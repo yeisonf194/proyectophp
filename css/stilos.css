@@ -1,0 +1,126 @@
+*{
+	margin:0px;
+	padding: 0px;
+    box-sizing: border-box;
+    max-width: 2500px;
+}
+.container{
+    width: 85% !important;
+}
+.inicio{
+    background: url(../img/friends.jpg) top center fixed;
+}
+.logo{
+    font-size: 30px;
+    font-family: Edwardian Script ITC;
+}
+.logo:hover{
+    -moz-transform: scale(1.05);
+-webkit-transform: scale(1.05);
+-o-transform: scale(1.05);
+-ms-transform: scale(1.05);
+transform: scale(1.05);
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+#carouselId{
+    width: 90%;
+}
+.enlaces{
+    float: left;
+    margin-left: 40px;
+}
+.menu{
+    width: 100% !important;
+    background-color: #424141;   
+}
+.menu ul{
+	list-style: none;
+}
+.menu ul li{
+	float: left;
+}
+.menu ul li a{
+    padding:10px 20px;
+	display: block;
+	color:#ffffff;
+	text-decoration: none;
+}
+.enlaces:hover{
+	background:#838383;
+}
+.texto{
+    margin-left: 20px;
+}
+.fondo{
+    width: 30%;
+    height: 100%;
+    margin: auto;
+}
+.services li{
+    float: left;
+    list-style: none;
+}
+.services li i:hover{
+    color:#d93843;
+}
+.services li i{
+    color:#505050;
+    font-size: 35px;
+}
+.info{
+    padding: 30px;
+    color: #ffffff;
+}
+.lado{
+    font-size: 25px;
+}
+.btnGaleria{
+    background-color: #919191 !important;
+}
+body{
+    background-image: url(img/bkg.jpg);
+}
+.boton{
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+    border-radius: 35px;
+}
+footer{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+.letra{
+    margin-left: 150px;
+}
+.columna{
+    float: left;
+}
+.ingreso{
+    width: 130px;
+    padding: 5px;
+    background-color: #ffffff;
+    color:#505050;
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+.inicio, .log, .plan{
+    background-attachment: fixed;
+    position: center center;
+    background-repeat: no-repeat;
+}
+.inicio{
+    background-image: url(../img/bfg2.jpg);
+}
+.log{
+    background-image: url(../img/Login.jpg);
+}
+.plan{
+    background-image: url(../img/bkg.jpg); 
+}

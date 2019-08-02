@@ -1,0 +1,49 @@
+<?php
+include '../config/Conexion.php';
+session_start(); 
+switch ($_GET["op"]) {
+    case 'registrar':
+        $nombre=$_POST["nombre"];
+        $apellido=$_POST["apellido"];
+        $email=$_POST["email"];
+        $telefono=$_POST["telefono"];
+        $tipodocumento=$_POST["tipodocumento"];
+        $documento=$_POST["documento"];
+        $contrasenia=$_POST["contrasenia"];
+        $passAgain=$_POST["passAgain"];
+         //Ejecutanto insercion a la base de datos
+        $insertar="INSERT INTO usuario(rol, nombre, apellido, tipodocumento, documento, telefono, email, contrasenia) 
+                    VALUES ('cliente' ,'$nombre', '$apellido', '$tipodocumento', '$documento', '$telefono', '$email', '$contrasenia')";
+
+        //Validando usuario existente
+        $verificarUsuario=mysqli_query($conexion, "SELECT * FROM usuario WHERE email='$email'");
+        if (mysqli_num_rows($verificarUsuario)>0){
+            echo '<script>alert("Este correo ya se encuentra registrado")</script>';
+            header('Location: ../vistas/registro.php');
+        }else{
+            $resultado = mysqli_query($conexion, $insertar);
+            if (!$resultado){
+                echo '<script>alert("Error al registrarse")</script>';
+            }else{
+                echo '<script>alert("Usuario registrado exitosamente")</script>';
+            }
+        }
+    break;
+    case 'ingreso':
+    $usuario=$_POST["usuario"];
+    $clave=$_POST["clave"];
+    $validarusuario="SELECT nombre,rol FROM usuario WHERE email='$usuario' AND contrasenia='$clave'";
+    $resultado=mysqli_query($conexion, $validarusuario);
+    $fila=mysqli_num_rows($resultado);
+        if($fila>0){
+            $_SESSION["nombre"]=$fila->nombre;
+            header('Location: ../vistas/indexUser.php');
+        }else{
+            echo'<script>alert("Error")</script>';
+        }
+        mysqli_free_result($resultado);
+        mysqli_close($conexion);
+    break;
+}
+
+?>
