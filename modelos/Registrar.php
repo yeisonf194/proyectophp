@@ -30,19 +30,27 @@ switch ($_GET["op"]) {
         }
     break;
     case 'ingreso':
-    $usuario=$_POST["usuario"];
-    $clave=$_POST["clave"];
-    $validarusuario="SELECT nombre,rol FROM usuario WHERE email='$usuario' AND contrasenia='$clave'";
-    $resultado=mysqli_query($conexion, $validarusuario);
-    $fila=mysqli_num_rows($resultado);
-        if($fila>0){
-            $_SESSION["nombre"]=$fila->nombre;
-            header('Location: ../vistas/indexUser.php');
+        $usuario=$_POST["usuario"];
+        $clave=$_POST["clave"];
+        $validarusuario="SELECT nombre,rol FROM usuario WHERE email='$usuario' AND contrasenia='$clave'";
+        $resultado=mysqli_query($conexion, $validarusuario);
+        $fila=mysqli_num_rows($resultado);
+        if($fila=$resultado->fetch_object()){
+            $_SESSION["Nombre"]=$fila->nombre;
+            $_SESSION["rol"]=$fila->rol; // el nombre de la variable es $_SESSION["nombre"], cuando quiera usarla se escribe.
+            echo json_encode($fila);
         }else{
             echo'<script>alert("Error")</script>';
         }
-        mysqli_free_result($resultado);
-        mysqli_close($conexion);
+        if(($_SESSION["rol"])=="cliente"){
+            header('Location: ../vistas/indexUser.php');
+        }else{
+            header('Location: ../vistas/indexAdmin.php');
+        }
+    break;
+    case 'salir':
+        session_destroy();
+        header("Location: ../vistas/login.php");
     break;
 }
 

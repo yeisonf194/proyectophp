@@ -35,7 +35,7 @@
                                     <a class="nav-link" style="color:#424141" href="#">esNotificaciones</a>
                                 </li>
                                 <li class="nav-item">
-                                        <a class="nav-link enlaces" href="registro.php"><span class="hidden-xs"><?php echo $_SESSION["Nombre"]?></span></a>
+                                        <a class="nav-link enlaces" href="registro.php"><span class="hidden-xs"><?php echo $_SESSION["rol"]?></span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link enlaces" href="../modelos/Registrar.php?op=salir">Cerrar Sesion</a>
