@@ -20,7 +20,7 @@ require 'header.php';
                         </p><br>
                     </div>
                     <div class="col-12 text-center">
-                        <p><button type="submit" class="btn btn-primary">Enviar</button></p>
+                        <p><button type="submit" class="btn btn-danger">Enviar</button></p>
                     </div>
                 </div>
             </form><br><br>
