@@ -3,7 +3,7 @@ require 'header.php';
 ?>
 <div class="container">
     <div class="row d-flex">
-        <div class="col-12"><h1 class="text-white text-center mt-5 mb-4">Formulario de Registro</h1><br></div>
+        <div class="col-12"><h1 class="text-white text-center mt-5 mb-4">Ingresar</h1><br></div>
         <div class="col-6 justify-aling-center">
             <form method="POST" action="../modelos/Registrar.php?op=ingreso" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%; margin-left:280px">
                 <div class="row d-flex">
@@ -20,7 +20,7 @@ require 'header.php';
                         </p><br>
                     </div>
                     <div class="col-12 text-center">
-                        <p><button type="submit" class="btn btn-danger">Enviar</button></p>
+                        <p><button type="submit" class="btn btn-danger">Ingresar</button></p>
                     </div>
                 </div>
             </form><br><br>

@@ -13,15 +13,17 @@
     <link rel="stylesheet" href="../css/stilos.css">
   </head>
   <body style="background-image: url(../img/bkg.jpg); background-repeat: no-repeat; box-sizing: border-box; background-size: 100% 100%; background-size: cover;">
-  <header class="row mb-5">
-  <section class="inicio text-center" style="width:100%">
-        <br><br><br><h4 class="text-center text-white mt-5 mb-5">Bienvenido a</h4>
-        <img src="../img/background.png" alt="" width="30%">
-        <div class="actions">
-          <a href="#about" class="btn-get-started">Registrate</a>
-          <a href="#services" class="btn-services">Ingresar</a>
+  <header class="row mb-5 d-flex">
+  <section class="inicio text-center row" style="width:100%">
+        <div class="col justify-content-center text-center">
+            <br><br><br><h4 class="text-center text-white mt-5 mb-5">Bienvenido a</h4>
+            <img src="../img/background.png" alt="" width="30%">
+            <div class="col-12 btn btn-danger text-center mt-5">
+                <div><a style="width: 100px;float:left;border:#ffffff 1px solid;color:#ffffff;margin-right: 40px;padding: 5px" href="registro.php">Registrate</a></div>
+                <div><a style="width: 100px;float:left;border:#ffffff 1px solid;color:#ffffff;padding: 5px" href="login.php">Ingresar</a></div>
+            </div>
         </div>
-    </section>
+</section>
          <nav class=" navbar navbar-expand-lg menu">
                 <div class="container">
                         <a class="navbar-brand logo text-white" href="index.php">EventosGuatoc</a>

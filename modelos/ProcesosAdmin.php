@@ -2,29 +2,30 @@
 include '../config/Conexion.php';
 session_start(); 
 switch ($_GET["op"]) {
-    case 'registrar':
+    case 'agregarEmpresa':
         $nombre=$_POST["nombre"];
-        $apellido=$_POST["apellido"];
+        $nit=$_POST["nit"];
         $email=$_POST["email"];
         $telefono=$_POST["telefono"];
-        $tipodocumento=$_POST["tipodocumento"];
-        $documento=$_POST["documento"];
-        $contrasenia=$_POST["contrasenia"];
-        $passAgain=$_POST["passAgain"];
+        $tipo=$_POST["tipo"];
+        $clave=$_POST["clave"];
          //Ejecutanto insercion a la base de datos
-        $insertar="INSERT INTO usuario(rol, nombre, apellido, tipodocumento, documento, telefono, email, contrasenia) 
-                    VALUES ('cliente' ,'$nombre', '$apellido', '$tipodocumento', '$documento', '$telefono', '$email', '$contrasenia')";
+        $insertar="INSERT INTO empresa(nombre, tipo, nit, telefono, correo, contrasenia) 
+                    VALUES ('$nombre', '$tipo', '$nit', '$telefono', '$email', '$clave')";
 
         //Validando usuario existente
-        $verificarUsuario=mysqli_query($conexion, "SELECT * FROM usuario WHERE email='$email'");
+        $verificarUsuario=mysqli_query($conexion, "SELECT * FROM empresa WHERE email='$email'");
         if (mysqli_num_rows($verificarUsuario)>0){
-            echo "<script>alert('Este correo ya se encuentra registrado');window.location= '../vistas/registro.php'</script>";
+            echo '<script>alert("Este correo ya se encuentra registrado")</script>';
+            header('Location: ../vistas/agregarEmpresa.php');
         }else{
             $resultado = mysqli_query($conexion, $insertar);
             if (!$resultado){
-                echo "<script>alert('Error al registrarse');window.location= '../vistas/registro.php'</script>";
+                echo '<script>alert("Error al agregar")</script>';
+                header('Location: ../vistas/agregarEmpresa.php');
             }else{
-                echo "<script>alert('Usuario registrado');window.location= '../vistas/login.php'</script>";
+                echo '<script>alert("Empresa registrada")</script>';
+                header('Location: ../vistas/empresa.php');
             }
         }
     break;

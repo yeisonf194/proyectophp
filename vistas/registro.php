@@ -36,6 +36,7 @@ require 'header.php';
                     <div class="col-12 mb-5 text-center">
                         <label for="name" class="text-white">Ingrese su Correo</label>
                         <input type="email" placeholder="Ingrese su email" name="email" style="border-radius:5px; color:#424141; width: 100%" required>
+                        <span id="infoUser" class="text-danger"></span>
                     </div>
                     <div class="col-12 text-center">
                         <p>

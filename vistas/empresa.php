@@ -1,68 +1,55 @@
 <?php
-require 'header.php';
+session_start();
+if(!isset($_SESSION["rol"])) { // en esta linea se valida que existan datos en la variable de sesion
+  header("Location:login.php");
+}else{
+require 'headerAdmin.php';
+require '../config/Conexion.php';
 ?>
 <div class="container">
-    <div class="row d-flex">
-        <div class="col-12"><h1 class="text-white text-center mt-5 mb-4">Formulario de Registro</h1><br></div>
-        <div class="col-6 justify-aling-center">
-            <form method="POST" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%; margin-left:280px">
-                <div class="row d-flex">
-                    <div class="col-6 pr-5">
-                        <p>
-                        <label for="name" class="text-white">Ingrese su nombre</label>
-                        <input type="text" placeholder="Ingrese sus nombres" name="nombre" style="border-radius:5px; color:#424141; width: 100%" required>
-                        </p><br>
+        <section class="row d-flex justify-content-center">
+                <article class="col">
+                    <br><h1 class="text-center mt-5">Empresas</h1><br><br>
+                    <div>
+                        <table style="background-color: rgba(0,0,0,0.1); border-radius:20px">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 20px; width: 200px; text-align: center">Nombre</th>
+                                    <th style="padding: 20px; width: 200px; text-align: center">Tipo</th>
+                                    <th style="padding: 20px; width: 200px; text-align: center">Nit</th>
+                                    <th style="padding: 20px; width: 200px; text-align: center">Telefono</th>
+                                    <th style="padding: 20px; width: 300px; text-align: center">Correo</th>
+                                    <th style="padding: 20px; width: 300px; text-align: center">Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php 
+                            $consulta="SELECT * FROM empresa";
+                            $resultado=mysqli_query($conexion,$consulta);
+                            while($mostrar=mysqli_fetch_array($resultado)){
+                            ?>
+                                    <tr>
+                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
+                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['tipo'] ?></td>
+                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['nit'] ?></td>
+                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['telefono'] ?></td>
+                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['correo'] ?></td>
+                                        <td style="padding: 10px; text-align: center">
+                                            <a href="editaEmpresa.htm?idempresa=${dato.idempresa}" class="text-primary mr-3">Editar</a>
+                                            <a href="editaEmpresa.htm?idempresa=${dato.idempresa}" class="text-primary mr-3">Detalles</a>
+                                        </td>
+                                    </tr>
+                            <?php
+                            }
+                            ?>      
+                            </tbody>
+                        </table><br><br>
+                        <a href="agregarEmpresa.php" class="btn btn-primary">Agregar Empresa</a><br><br>
                     </div>
-                    <div class="col-6 pl-5">
-                        <p>
-                        <label for="name" class="text-white">Apellidos</label>
-                        <input type="text" placeholder="Ingrese sus apellidos" name="apellido" style="border-radius:5px; color:#424141; width: 100%" required>
-                        </p><br>
-                    </div>
-                    <div class="col-6 pr-5 text-white">
-                        <p><label>Tipo documento</label>
-                            <select name="tipodocumento" style="border-radius:5px; color:#424141; width: 100%">
-						        <option value="cc" selected="select">Cedula de ciudadania</option>
-						        <option value="ce">Cedula de extranjeria</option>
-                            </select>
-                        </p>
-                    </div>
-                    <div class="col-6 pl-5">
-                        <p>
-                        <label class="text-white">Documento</label>
-                        <input type="text" placeholder="Numero de documento" name="documento" style="border-radius:5px; color:#424141; width: 100%" required>
-                        </p><br>
-                    </div>
-                    <div class="col-12 mb-5 text-center">
-                        <label for="name" class="text-white">Ingrese su Correo</label>
-                        <input type="email" placeholder="Ingrese su email" name="email" style="border-radius:5px; color:#424141; width: 100%" required>
-                    </div>
-                    <div class="col-12 text-center">
-                        <p>
-                        <label for="name" class="text-white">Telefono</label><br>
-                        <input type="text" placeholder="333 3333 33" name="telefono" style="border-radius:5px; color:#424141; width: 80%" required>
-                        </p><br>
-                    </div>
-                    <div class="col-6 pr-5">
-                        <p>
-                        <label for="name" class="text-white">Contraseña</label>
-                        <input type="text" placeholder="Ingresa una contraseña" name="contrasenia" style="border-radius:5px; color:#424141; width: 100%" required>
-                        </p><br>
-                    </div>
-                    <div class="col-6 pl-5">
-                        <p>
-                        <label for="name" class="text-white">Confirma tu contraseña</label>
-                        <input type="text" placeholder="Contraseña" name="passAgain" style="border-radius:5px; color:#424141; width: 100%" required>
-                        </p><br><br>
-                    </div>
-                    <div class="col-12 text-center">
-                        <p><button type="submit" class="btn btn-primary">Enviar</button></p>
-                    </div>
-                </div>
-            </form><br><br>
-        </div>
-    </div>
-</div>
+                </article>
+            </section> 
+   </div>
 <?php
-    require 'footer.php';
+require 'footer.php';
+}
 ?>
