@@ -1,15 +1,15 @@
 <?php
 session_start();
 if(!isset($_SESSION["rol"])) { // en esta linea se valida que existan datos en la variable de sesion
-  header("Location:login.php");
+  header("Location:../Shared/Login.php");
 }else{
-require 'headerAdmin.php';
+require 'Header.php';
 ?>
 <div class="container">
     <div class="row d-flex">
         <div class="col-12"><h1 class="text-center mt-5 mb-4">Agrega Empresa</h1><br></div>
         <div class="col-6 justify-aling-center">
-            <form method="POST" action="../modelos/ProcesosAdmin.php?op=agregarEmpresa" style="background-color: rgba(0,0,0,0.1); border-radius:20px; padding: 40px; width:100%; margin-left:280px">
+            <form method="POST" action="../../../modelos/ProcesosAdmin.php?op=agregarEmpresa" style="background-color: rgba(0,0,0,0.1); border-radius:20px; padding: 40px; width:100%; margin-left:280px">
                 <div class="row d-flex">
                     <div class="col-6 pr-5">
                         <p>
@@ -52,7 +52,7 @@ require 'headerAdmin.php';
                         <p><button type="submit" class="btn btn-primary">Agregar</button></p>
                     </div>
                     <div class="col-6 text-center">
-                        <p><a href="empresa.php" class="btn btn-danger">Cancelar</a></p>
+                        <p><a href="Index.php" class="btn btn-danger">Cancelar</a></p>
                     </div>
                 </div>
             </form><br><br>
@@ -60,6 +60,6 @@ require 'headerAdmin.php';
     </div>
 </div>
 <?php
-require 'footer.php';
+require '../Footer.php';
 }
 ?>

@@ -1,10 +1,10 @@
 <?php
 session_start();
 if(!isset($_SESSION["rol"])) { // en esta linea se valida que existan datos en la variable de sesion
-  header("Location:login.php");
+  header("Location:../../Shared/Login.php");
 }else{
-require 'headerAdmin.php';
-require '../config/Conexion.php';
+require 'Header.php';
+require '../../../Config/Conexion.php';
 ?>
 <div class="container">
         <section class="row d-flex justify-content-center">
@@ -44,12 +44,12 @@ require '../config/Conexion.php';
                             ?>      
                             </tbody>
                         </table><br><br>
-                        <a href="agregarEmpresa.php" class="btn btn-primary">Agregar Empresa</a><br><br>
+                        <a href="AgregaEmpresa.php" class="btn btn-primary">Agregar Empresa</a><br><br>
                     </div>
                 </article>
             </section> 
    </div>
 <?php
-require 'footer.php';
+require '../../Footer.php';
 }
 ?>

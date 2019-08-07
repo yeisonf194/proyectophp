@@ -1,5 +1,5 @@
 <?php
-require 'headerIndex.php';
+require 'Header.php';
 ?>
     <div class="container">
           <section class="row main mt-5">
@@ -47,7 +47,7 @@ require 'headerIndex.php';
                             <p class="display-4 text-center">Sobre nosotros</p>
                             <p class="text-center">Trabajamos para que tu evento sea una experiencia unica, con los mas altos estandares de calidad y profesionalismo Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, consectetur nobis. Tenetur a omnis, voluptates minima tempore facere in dignissimos ipsum error voluptatibus, iusto deserunt consequatur impedit, dolores eius tempora?</p>
                         </div>
-                        <div class="col-12"><img class="img-fluid" src="img/collage.jpg" alt=""></div>
+                        <div class="col-12"><img class="img-fluid" src="../img/collage.jpg" alt=""></div>
                 </article>
               <article class="row">
                     <div class="col align-center">
@@ -71,40 +71,40 @@ require 'headerIndex.php';
                         <p class="text-center">En EventosGuatoc contamos con una categoria de eventos para que elijas la que necesitas para tu evento</p><br>
                         <div class="row d-flex justify-content-center">
                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                    <img class="card-img img-fluid" src="img/boda1.jpg" alt="" width="10px">
+                                    <img class="card-img img-fluid" src="../img/boda1.jpg" alt="" width="10px">
                                         <div class="card-img-overlay">
                                           <h4 class="card-title">Bodas</h4>
                                         </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="img/boda1.jpg" alt="" width="10px">
+                                        <img class="card-img img-fluid" src="../img/boda1.jpg" alt="" width="10px">
                                             <div class="card-img-overlay">
                                               <h4 class="card-title">15 años</h4>
                                             </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="img/birthday2.jpg" alt="" width="10px">
+                                        <img class="card-img img-fluid" src="../img/birthday2.jpg" alt="" width="10px">
                                             <div class="card-img-overlay">
                                               <h4 class="card-title">Cumpleaños</h4>
                                               <p class="card-text"></p>
                                             </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="img/Bautimo1.jpg" alt="" width="10px">
+                                        <img class="card-img img-fluid" src="../img/Bautimo1.jpg" alt="" width="10px">
                                             <div class="card-img-overlay">
                                               <h4 class="card-title">Bautizos</h4>
                                               <p class="card-text"></p>
                                             </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="img/friends1.jpg" alt="" width="10px">
+                                        <img class="card-img img-fluid" src="../img/friends1.jpg" alt="" width="10px">
                                             <div class="card-img-overlay">
                                               <h4 class="card-title">Reunion</h4>
                                               <p class="card-text"></p>
                                             </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="img/party1.jpg" alt="" width="10px">
+                                        <img class="card-img img-fluid" src="../img/party1.jpg" alt="" width="10px">
                                             <div class="card-img-overlay">
                                               <h4 class="card-title">Integracion</h4>
                                               <p class="card-text"></p>
@@ -116,5 +116,5 @@ require 'headerIndex.php';
           </section>
       </div>
 <?php
-    require 'footer.php';
+    require 'Footer.php';
 ?>

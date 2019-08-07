@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION["rol"])) { // en esta linea se valida que existan datos en la variable de sesion
-  header("Location:login.php");
+  header("Location:../Shared/Login.php");
 }else{
-require 'headerAdmin.php';
+require 'Header.php';
 ?>
 <div class="container">
           <section class="row main mt-5">
@@ -11,7 +11,7 @@ require 'headerAdmin.php';
                     <h1>Bienvenido Administrador</h1>
               </article>
               <article class="row d-flex">
-                  <div class="col text-center"><img class="fondo img-fluid" src="img/background.png" alt=""></div>
+                  <div class="col text-center"><img class="fondo img-fluid" src="../../img/background.png" alt=""></div>
               </article>
           </section>
           <section class="info">
@@ -20,7 +20,7 @@ require 'headerAdmin.php';
                             <p class="display-4 text-center">Sobre nosotros</p>
                             <p class="text-center">Trabajamos para que tu evento sea una experiencia unica, con los mas altos estandares de calidad y profesionalismo Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, consectetur nobis. Tenetur a omnis, voluptates minima tempore facere in dignissimos ipsum error voluptatibus, iusto deserunt consequatur impedit, dolores eius tempora?</p>
                         </div><br><br>
-                        <div class="col-12"><img style="width: 90%; height: 500px; margin-left: 60px" src="img/collage.jpg" alt=""></div>
+                        <div class="col-12"><img style="width: 90%; height: 500px; margin-left: 60px" src="../../img/collage.jpg" alt=""></div>
                 </article>
               <article class="row">
                     <div class="col align-center">
@@ -41,6 +41,6 @@ require 'headerAdmin.php';
           </section>
       </div>
 <?php
-require 'footer.php';
+require '../Footer.php';
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-include '../config/Conexion.php';
+include '../Config/Conexion.php';
 session_start(); 
 switch ($_GET["op"]) {
     case 'registrar':
@@ -18,13 +18,13 @@ switch ($_GET["op"]) {
         //Validando usuario existente
         $verificarUsuario=mysqli_query($conexion, "SELECT * FROM usuario WHERE email='$email'");
         if (mysqli_num_rows($verificarUsuario)>0){
-            echo "<script>alert('Este correo ya se encuentra registrado');window.location= '../vistas/registro.php'</script>";
+            echo "<script>alert('Este correo ya se encuentra registrado');window.location= '../vistas/Usuario/Registro.php'</script>";
         }else{
             $resultado = mysqli_query($conexion, $insertar);
             if (!$resultado){
-                echo "<script>alert('Error al registrarse');window.location= '../vistas/registro.php'</script>";
+                echo "<script>alert('Error al registrarse');window.location= '../vistas/Usuario/Registro.php'</script>";
             }else{
-                echo "<script>alert('Usuario registrado');window.location= '../vistas/login.php'</script>";
+                echo "<script>alert('Usuario registrado');window.location= '../vistas/Shared/Login.php'</script>";
             }
         }
     break;
@@ -42,14 +42,14 @@ switch ($_GET["op"]) {
             echo'<script>alert("Error")</script>';
         }
         if(($_SESSION["rol"])=="cliente"){
-            header('Location: ../vistas/indexUser.php');
+            header('Location: ../vistas/Usuario/Index.php');
         }else{
-            header('Location: ../vistas/indexAdmin.php');
+            header('Location: ../vistas/Administrador/Index.php');
         }
     break;
     case 'salir':
         session_destroy();
-        header("Location: ../vistas/login.php");
+        header("Location: ../vistas/Shared/Login.php");
     break;
 }
 
