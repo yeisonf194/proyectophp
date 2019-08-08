@@ -9,7 +9,7 @@ require '../../../Config/Conexion.php';
 <div class="container">
         <section class="row d-flex justify-content-center">
                 <article class="col">
-                    <br><h1 class="text-center mt-5">Empresas</h1><br><br>
+                    <br><h1 class="text-center mt-5">Eventos</h1><br><br>
                     <div>
                         <table style="background-color: rgba(0,0,0,0.1); border-radius:20px">
                             <thead>
