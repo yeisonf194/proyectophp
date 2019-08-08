@@ -47,6 +47,24 @@ switch ($_GET["op"]) {
             header('Location: ../vistas/Administrador/Index.php');
         }
     break;
+    case 'ingresoEmpresa':
+        $usuario=$_POST["usuario"];
+        $clave=$_POST["clave"];
+        $validarusuario="SELECT nombre FROM empresa WHERE correo='$usuario' AND contrasenia='$clave'";
+        $resultado=mysqli_query($conexion, $validarusuario);
+        $fila=mysqli_num_rows($resultado);
+        if($fila=$resultado->fetch_object()){
+            $_SESSION["Nombre"]=$fila->nombre;
+            header ('Location: ../vistas/Empresa/Index.php');
+            echo json_encode($fila);
+        }else{
+            echo "<script>alert('Error');window.location= '../vistas/Shared/Login.php'</script>";
+        }
+    break;
+    case 'salirEmpresa':
+        session_destroy();
+        header("Location: ../vistas/Empresa/Login.php");
+    break;
     case 'salir':
         session_destroy();
         header("Location: ../vistas/Shared/Login.php");

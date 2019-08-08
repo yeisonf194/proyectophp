@@ -26,10 +26,10 @@
                                     <a class="nav-link enlaces" href="../Empresa/Index.php">Empresas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link enlaces" href="tipoevento.php">Ofertas</a>
+                                    <a class="nav-link enlaces" href="Index.php">Eventos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link enlaces" href="#contacto">Notificaciones</a>
+                                    <a class="nav-link enlaces" href="../Servicio/Index.php">Servicios</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" style="color:#424141" href="#">esNotificaciones</a>

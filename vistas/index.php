@@ -112,7 +112,7 @@ require 'Header.php';
                                 </div>
                         </div>
               </article>
-                      </div>
+              <p class="text-center"><a class="btn btn-secondary" href="Empresa/Login.php">Empresa</a></p>
           </section>
       </div>
 <?php

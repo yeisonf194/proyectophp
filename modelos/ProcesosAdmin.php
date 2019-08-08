@@ -48,9 +48,32 @@ switch ($_GET["op"]) {
             header('Location: ../vistas/indexAdmin.php');
         }
     break;
+    case 'agregarServicio':
+        $nombre=$_POST["nombre"];
+        $empresa=$_POST["empresa"];
+        $especificaciones=$_POST["especificaciones"];
+        $precio=$_POST["precio"];
+
+        //Insertando servicio
+        $insertar="INSERT INTO servicio(nombre, idempresa, especificaciones, precio) 
+                    VALUES ('$nombre', '$empresa', '$especificaciones', '$precio')";
+
+        //Validando usuario existente
+        $verificarServicio=mysqli_query($conexion, "SELECT * FROM servicio WHERE nombre='$nombre'");
+        if (mysqli_num_rows($verificarServicio)>0){
+            echo "<script>alert('Este servicio ya se encuentra registrado');window.location= '../vistas/Administrador/Servicio/Agregar.php'</script>";
+        }else{
+            $resultado = mysqli_query($conexion, $insertar);
+            if (!$resultado){
+                echo "<script>alert('Error');window.location= '../vistas/Administrador/Servicio/Agregar.php'</script>";
+            }else{
+                echo "<script>alert('Servicio Agregado');window.location= '../vistas/Administrador/Servicio/Index.php'</script>";
+            }
+        }
+    break;
     case 'salir':
         session_destroy();
-        header("Location: ../vistas/login.php");
+        header("Location: ../vistas/Shared/Login.php");
     break;
 }
 

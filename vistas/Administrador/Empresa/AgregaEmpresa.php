@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["rol"])) { // en esta linea se valida que existan datos en la variable de sesion
-  header("Location:../Shared/Login.php");
+  header("Location:../../Shared/Login.php");
 }else{
 require 'Header.php';
 ?>
