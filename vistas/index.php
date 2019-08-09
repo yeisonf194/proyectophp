@@ -1,120 +1,340 @@
 <?php
 require 'Header.php';
 ?>
+ <section class="page-section" id="services">
     <div class="container">
-          <section class="row main mt-5">
-                <article class="row">
-                    <div id="carouselId" class="col carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselId" data-slide-to="1"></li>
-                            <li data-target="#carouselId" data-slide-to="2"></li>
-                            <li data-target="#carouselId" data-slide-to="3"></li>
-                            <li data-target="#carouselId" data-slide-to="4"></li>
-                        </ol>
-                        <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <img class="img-fluid" src="../img/C1.jpeg" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="img-fluid" src="../img/C2.jpg" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="img-fluid" src="../img/C3.jpg" alt="Third slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="img-fluid" src="../img/C4.jpg" alt="Fourth slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="img-fluid" src="../img/C5.jpg" alt=" slide">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-              </article>
-          </section>
-          <section class="info">
-                <article class="row">
-                <div class="col text-center p-5"><img class="fondo img-fluid" src="../img/background.png" alt=""></div>
-                        <div class="col-12">
-                            <p class="display-4 text-center">Sobre nosotros</p>
-                            <p class="text-center">Trabajamos para que tu evento sea una experiencia unica, con los mas altos estandares de calidad y profesionalismo Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, consectetur nobis. Tenetur a omnis, voluptates minima tempore facere in dignissimos ipsum error voluptatibus, iusto deserunt consequatur impedit, dolores eius tempora?</p>
-                        </div>
-                        <div class="col-12"><img class="img-fluid" src="../img/collage.jpg" alt=""></div>
-                </article>
-              <article class="row">
-                    <div class="col align-center">
-                            <br><br><br><br><br><p class="display-4 text-center" id="servicio">Nuestros servicios</p>
-                            <p class="text-center">Te ofrecemos una amplia variedad de servicios para tu evento, prestados por empresas regionales y reconocidas en todo el Valle de Tenza. Con un amplio recorrido en el mercado y la suficiente experiencia para poder garantizarte que tu evento se realize con los mas altos estandares de calidad</p><br>
-                            <div class="row d-flex justify-content-center">
-                                <ul class="services">
-                                    <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center" style="float: left"><li class="mx-1"><a href=""><button class="boton"><i class="fas fa-utensils text-center"></i></button></a></li></div>
-                                    <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center" style="float: left"><li class="mx-1"><a href=""><button class="boton"><i class="fas fa-music text-center"></i></button></a></li></div>
-                                    <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center" style="float: left"><li class="mx-1"><a href=""><button class="boton"><i class="fas fa-camera text-center"></i></button></a></li></div>
-                                    <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center" style="float: left"><li class="mx-1"><a href=""><button class="boton"><i class="fas fa-map-marker-alt text-center"></i></button></a></li></div>
-                                    <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center" style="float: left"><li class="mx-1"><a href=""><button class="boton"><i class="fab fa-black-tie"></i></button></a></li></div>
-                                    <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center" style="float: left"><li class="mx-1"><a href=""><button class="boton"><i class="fas fa-wine-glass-alt text-center"></i></button></a></li></div>
-                                  </ul><br><br>
-                            </div>
-                      </div>
-              </article>
-              <article class="row">
-                    <div class="col-12 align-center">
-                        <br><br><br><br><br><p class="display-4 text-center" id="evento">Eventos</p>
-                        <p class="text-center">En EventosGuatoc contamos con una categoria de eventos para que elijas la que necesitas para tu evento</p><br>
-                        <div class="row d-flex justify-content-center">
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                    <img class="card-img img-fluid" src="../img/boda1.jpg" alt="" width="10px">
-                                        <div class="card-img-overlay">
-                                          <h4 class="card-title">Bodas</h4>
-                                        </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="../img/boda1.jpg" alt="" width="10px">
-                                            <div class="card-img-overlay">
-                                              <h4 class="card-title">15 años</h4>
-                                            </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="../img/birthday2.jpg" alt="" width="10px">
-                                            <div class="card-img-overlay">
-                                              <h4 class="card-title">Cumpleaños</h4>
-                                              <p class="card-text"></p>
-                                            </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="../img/Bautimo1.jpg" alt="" width="10px">
-                                            <div class="card-img-overlay">
-                                              <h4 class="card-title">Bautizos</h4>
-                                              <p class="card-text"></p>
-                                            </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="../img/friends1.jpg" alt="" width="10px">
-                                            <div class="card-img-overlay">
-                                              <h4 class="card-title">Reunion</h4>
-                                              <p class="card-text"></p>
-                                            </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-3 card bg-dark text-white" style="width:350px">
-                                        <img class="card-img img-fluid" src="../img/party1.jpg" alt="" width="10px">
-                                            <div class="card-img-overlay">
-                                              <h4 class="card-title">Integracion</h4>
-                                              <p class="card-text"></p>
-                                            </div>
-                                </div>
-                        </div>
-              </article>
-              <p class="text-center"><a class="btn btn-secondary" href="Empresa/Login.php">Empresa</a></p>
-          </section>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Services</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
       </div>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">E-Commerce</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Responsive Design</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Web Security</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="bg-light page-section" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Portfolio</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Threads</h4>
+            <p class="text-muted">Illustration</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Explore</h4>
+            <p class="text-muted">Graphic Design</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Finish</h4>
+            <p class="text-muted">Identity</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Lines</h4>
+            <p class="text-muted">Branding</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Southwest</h4>
+            <p class="text-muted">Website Design</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Window</h4>
+            <p class="text-muted">Photography</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="page-section" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">About</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>2009-2011</h4>
+                  <h4 class="subheading">Our Humble Beginnings</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>March 2011</h4>
+                  <h4 class="subheading">An Agency is Born</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>December 2012</h4>
+                  <h4 class="subheading">Transition to Full Service</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>July 2014</h4>
+                  <h4 class="subheading">Phase Two Expansion</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <h4>Be Part
+                  <br>Of Our
+                  <br>Story!</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="bg-light page-section" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="">
+            <h4>Kay Garland</h4>
+            <p class="text-muted">Lead Designer</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
+            <h4>Larry Parker</h4>
+            <p class="text-muted">Lead Marketer</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
+            <h4>Diana Pertersen</h4>
+            <p class="text-muted">Lead Developer</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/envato.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/designmodo.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/themeforest.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/creative-market.jpg" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 <?php
     require 'Footer.php';
 ?>

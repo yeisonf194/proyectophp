@@ -10,7 +10,7 @@ require '../../Config/Conexion.php';
           <section class="row main mt-5">
               <article class="row d-flex">
                   <div class="col-12">
-                      <h1 class="text-center text-white mt-5 mb-5">Bienvenido</h1>
+                      <h1 class="text-center text-white mt-5 mb-5">Contratando</h1>
                   </div>
                   <div class="col-12">
                       <form method="POST" action="../../Modelos/procesosUsuario.php?op=addevent" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:40%; margin-left:340px">

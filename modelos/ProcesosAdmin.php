@@ -71,6 +71,22 @@ switch ($_GET["op"]) {
             }
         }
     break;
+    case 'agregarEvento':
+        $nombre=$_POST["nombre"];
+        $tipo=$_POST["tipo"];
+
+        //Insertando servicio
+        $insertar="INSERT INTO tipoevento(nombre, categoria, condicion) 
+                    VALUES ('$nombre', '$tipo', '1')";
+
+
+        $resultado = mysqli_query($conexion, $insertar);
+        if (!$resultado){
+            echo "<script>alert('Error');window.location= '../vistas/Administrador/Evento/Agregar.php'</script>";
+        }else{
+            echo "<script>alert('Evento Agregado');window.location= '../vistas/Administrador/Evento/Index.php'</script>";
+        }
+    break;
     case 'salir':
         session_destroy();
         header("Location: ../vistas/Shared/Login.php");

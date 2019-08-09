@@ -15,25 +15,21 @@ require '../../../Config/Conexion.php';
                             <thead>
                                 <tr>
                                     <th style="padding: 20px; width: 200px; text-align: center">Nombre</th>
-                                    <th style="padding: 20px; width: 200px; text-align: center">Tipo</th>
-                                    <th style="padding: 20px; width: 200px; text-align: center">Nit</th>
-                                    <th style="padding: 20px; width: 200px; text-align: center">Telefono</th>
-                                    <th style="padding: 20px; width: 300px; text-align: center">Correo</th>
+                                    <th style="padding: 20px; width: 200px; text-align: center">Categoria</th>
+                                    <th style="padding: 20px; width: 200px; text-align: center">Condicion</th>
                                     <th style="padding: 20px; width: 300px; text-align: center">Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php 
-                            $consulta="SELECT * FROM empresa";
+                            $consulta="SELECT * FROM tipoevento";
                             $resultado=mysqli_query($conexion,$consulta);
                             while($mostrar=mysqli_fetch_array($resultado)){
                             ?>
                                     <tr>
                                         <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['tipo'] ?></td>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['nit'] ?></td>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['telefono'] ?></td>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['correo'] ?></td>
+                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['categoria'] ?></td>
+                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['condicion'] ?></td>
                                         <td style="padding: 10px; text-align: center">
                                             <a href="editaEmpresa.htm?idempresa=${dato.idempresa}" class="text-primary mr-3">Editar</a>
                                             <a href="editaEmpresa.htm?idempresa=${dato.idempresa}" class="text-primary mr-3">Detalles</a>
@@ -44,7 +40,7 @@ require '../../../Config/Conexion.php';
                             ?>      
                             </tbody>
                         </table><br><br>
-                        <a href="AgregaEmpresa.php" class="btn btn-primary">Agregar Empresa</a><br><br>
+                        <a href="Agregar.php" class="btn btn-primary">Agregar Evento</a><br><br>
                     </div>
                 </article>
             </section> 

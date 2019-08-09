@@ -11,6 +11,7 @@ switch ($_GET["op"]) {
         $documento=$_POST["documento"];
         $contrasenia=$_POST["contrasenia"];
         $passAgain=$_POST["passAgain"];
+        
          //Ejecutanto insercion a la base de datos
         $insertar="INSERT INTO usuario(rol, nombre, apellido, tipodocumento, documento, telefono, email, contrasenia) 
                     VALUES ('cliente' ,'$nombre', '$apellido', '$tipodocumento', '$documento', '$telefono', '$email', '$contrasenia')";
@@ -31,12 +32,13 @@ switch ($_GET["op"]) {
     case 'ingreso':
         $usuario=$_POST["usuario"];
         $clave=$_POST["clave"];
-        $validarusuario="SELECT nombre,rol FROM usuario WHERE email='$usuario' AND contrasenia='$clave'";
+        $validarusuario="SELECT nombre,rol,idusuario FROM usuario WHERE email='$usuario' AND contrasenia='$clave'";
         $resultado=mysqli_query($conexion, $validarusuario);
         $fila=mysqli_num_rows($resultado);
         if($fila=$resultado->fetch_object()){
             $_SESSION["Nombre"]=$fila->nombre;
-            $_SESSION["rol"]=$fila->rol; // el nombre de la variable es $_SESSION["nombre"], cuando quiera usarla se escribe.
+            $_SESSION["rol"]=$fila->rol;
+            $_SESSION["idusuario"]=$fila->idusuario;
             echo json_encode($fila);
         }else{
             echo'<script>alert("Error")</script>';
@@ -58,7 +60,7 @@ switch ($_GET["op"]) {
             header ('Location: ../vistas/Empresa/Index.php');
             echo json_encode($fila);
         }else{
-            echo "<script>alert('Error');window.location= '../vistas/Shared/Login.php'</script>";
+            echo "<script>alert('Datos Incorrectos');window.location= '../vistas/Usuario/Registro.php'</script>";
         }
     break;
     case 'salirEmpresa':
