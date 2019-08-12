@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION["Nombre"])) { // en esta linea se valida que existan datos en la variable de sesion
   header("Location:../Shared/Login.php");
 }else{
-require 'Header.php';
+require '../Shared/Header.php';
 require '../../Config/Conexion.php';
 ?>
 <div class="container">

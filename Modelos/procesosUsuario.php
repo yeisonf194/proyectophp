@@ -1,6 +1,7 @@
 <?php
 include '../config/Conexion.php';
 session_start(); 
+$restaurante;
 switch ($_GET["op"]) {
     case 'addevent':
         $tipoevento=$_POST["tipoevento"];
@@ -23,6 +24,37 @@ switch ($_GET["op"]) {
             }else{
                 header("Location: ../vistas/Usuario/Contratar.php");
             }
+    break;
+    case 'restaurante':
+        $restaurante=$_POST["restaurante"];
+            echo $restaurante;
+         //Ejecutanto insercion a la base de datos
+        // $insertar="INSERT INTO evento(idusuario, idtipoevento, fechareserva, fechaentregahora, cantidadpersonas, precio, abono, saldo) 
+        //             VALUES ('$usuario', '$tipoevento', '$time', '$fechaEntrega', '$asistentes', 0, 0, 0)";
+
+        // //Validando usuario existente
+        //     $resultado = mysqli_query($conexion, $insertar);
+        //     if (!$resultado){
+        //         echo "<script>alert('Error');window.location= '../vistas/Usuario/Index.php'</script>";
+        //     }else{
+        //         header("Location: ../vistas/Usuario/Contratar.php");
+        //     }
+    break;
+    case 'licor':
+        $licor=$_POST["licor"];
+            echo $restaurante;
+            echo $licor;
+         //Ejecutanto insercion a la base de datos
+        // $insertar="INSERT INTO evento(idusuario, idtipoevento, fechareserva, fechaentregahora, cantidadpersonas, precio, abono, saldo) 
+        //             VALUES ('$usuario', '$tipoevento', '$time', '$fechaEntrega', '$asistentes', 0, 0, 0)";
+
+        // //Validando usuario existente
+        //     $resultado = mysqli_query($conexion, $insertar);
+        //     if (!$resultado){
+        //         echo "<script>alert('Error');window.location= '../vistas/Usuario/Index.php'</script>";
+        //     }else{
+        //         header("Location: ../vistas/Usuario/Contratar.php");
+        //     }
     break;
     case 'salir':
         session_destroy();

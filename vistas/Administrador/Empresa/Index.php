@@ -9,13 +9,12 @@ require '../../../Config/Conexion.php';
 <div class="container">
         <section class="row d-flex justify-content-center">
                 <article class="col">
-                    <br><h1 class="text-center mt-5">Empresas</h1><br><br>
+                    <h1 class="text-center">Empresas</h1><br><br>
                     <div>
-                        <table style="background-color: rgba(0,0,0,0.1); border-radius:20px">
+                        <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
                             <thead>
                                 <tr>
                                     <th style="padding: 20px; width: 200px; text-align: center">Nombre</th>
-                                    <th style="padding: 20px; width: 200px; text-align: center">Tipo</th>
                                     <th style="padding: 20px; width: 200px; text-align: center">Nit</th>
                                     <th style="padding: 20px; width: 200px; text-align: center">Telefono</th>
                                     <th style="padding: 20px; width: 300px; text-align: center">Correo</th>
@@ -30,13 +29,12 @@ require '../../../Config/Conexion.php';
                             ?>
                                     <tr>
                                         <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['tipo'] ?></td>
                                         <td style="padding: 10px; text-align: center"><?php echo $mostrar['nit'] ?></td>
                                         <td style="padding: 10px; text-align: center"><?php echo $mostrar['telefono'] ?></td>
                                         <td style="padding: 10px; text-align: center"><?php echo $mostrar['correo'] ?></td>
                                         <td style="padding: 10px; text-align: center">
                                             <a href="editaEmpresa.htm?idempresa=${dato.idempresa}" class="text-primary mr-3">Editar</a>
-                                            <a href="editaEmpresa.htm?idempresa=${dato.idempresa}" class="text-primary mr-3">Detalles</a>
+                                            <a data-toggle="modal" href="#portfolioModal1?id=<?php echo $mostrar['idempresa']; ?>" class="text-primary mr-3">Detalles</a>
                                         </td>
                                     </tr>
                             <?php
@@ -49,7 +47,52 @@ require '../../../Config/Conexion.php';
                 </article>
             </section> 
    </div>
+
+
+   <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+              <?php 
+                    $idEmpresa=$_REQUEST['id'];
+                    $consulta="SELECT * FROM empresa WHERE idempresa='$idEmpresa'";
+                    $resultado=mysqli_query($conexion,$consulta);
+                    while($mostrar=mysqli_fetch_array($resultado)){
+                ?>
+                <h2><?php echo $mostrar['nombre'] ?></h2>
+                <tr>
+                    <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
+                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['nit'] ?></td>
+                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['telefono'] ?></td>
+                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['correo'] ?></td>
+                        <td style="padding: 10px; text-align: center">
+                                            <a href="editaEmpresa.htm?idempresa=${dato.idempresa}" class="text-primary mr-3">Editar</a>
+                                            <a data-toggle="modal" href="#portfolioModal1?id=<?php echo $mostrar['idempresa']; ?>" class="text-primary mr-3">Detalles</a>
+                                        </td>
+                                    </tr>
+                            <?php
+                            }
+                            ?> 
+                
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php
-require '../../Footer.php';
+require '../Shared/Footer.php';
 }
 ?>

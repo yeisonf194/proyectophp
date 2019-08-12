@@ -52,15 +52,17 @@ switch ($_GET["op"]) {
     case 'ingresoEmpresa':
         $usuario=$_POST["usuario"];
         $clave=$_POST["clave"];
-        $validarusuario="SELECT nombre FROM empresa WHERE correo='$usuario' AND contrasenia='$clave'";
+        $validarusuario="SELECT nombre, tipo, idempresa FROM empresa WHERE correo='$usuario' AND contrasenia='$clave'";
         $resultado=mysqli_query($conexion, $validarusuario);
         $fila=mysqli_num_rows($resultado);
         if($fila=$resultado->fetch_object()){
-            $_SESSION["Nombre"]=$fila->nombre;
-            header ('Location: ../vistas/Empresa/Index.php');
+            $_SESSION["tipo"]=$fila->tipo;
+            $_SESSION["idempresa"]=$fila->idempresa;
+            header('Location: ../vistas/Empresa/Index.php');
             echo json_encode($fila);
         }else{
-            echo "<script>alert('Datos Incorrectos');window.location= '../vistas/Usuario/Registro.php'</script>";
+            echo "Fallo";
+            // echo "<script>alert('Datos Incorrectos');window.location= '../vistas/Empresa/Login.php'</script>";
         }
     break;
     case 'salirEmpresa':

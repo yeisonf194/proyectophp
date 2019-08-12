@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION["Nombre"])) { // en esta linea se valida que existan datos en la variable de sesion
-  header("Location:../Shared/Login.php");
+if(!isset($_SESSION["tipo"])) { // en esta linea se valida que existan datos en la variable de sesion
+  header("Location:../Empresa/Login.php");
 }else{
-require 'HeaderIndex.php';
+require 'Header.php';
 ?>
 <div class="container">
           <section class="row main mt-5">
@@ -41,6 +41,6 @@ require 'HeaderIndex.php';
           </section>
       </div>
 <?php
-require '../Footer.php';
+require '../Shared/Footer.php';
 }
 ?>

@@ -5,33 +5,49 @@ require 'Header.php';
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Services</h2>
-          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+          <h2 class="section-heading text-uppercase">Servicios</h2>
+          <h3 class="section-subheading text-muted">La calidad de nuestros servicios es nuestra mejor publicidad</h3>
         </div>
       </div>
       <div class="row text-center">
         <div class="col-md-4">
           <span class="fa-stack fa-4x">
             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+            <i class="fas fa-utensils fa-stack-1x fa-inverse"></i>
           </span>
-          <h4 class="service-heading">E-Commerce</h4>
+          <h4 class="service-heading">Restaurante</h4>
           <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
         </div>
         <div class="col-md-4">
           <span class="fa-stack fa-4x">
             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+            <i class="fas fa-wine-glass-alt fa-stack-1x fa-inverse"></i>
           </span>
-          <h4 class="service-heading">Responsive Design</h4>
+          <h4 class="service-heading">Licor</h4>
           <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
         </div>
         <div class="col-md-4">
           <span class="fa-stack fa-4x">
             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+            <i class="fas fa-map-marker-alt fa-stack-1x fa-inverse"></i>
           </span>
-          <h4 class="service-heading">Web Security</h4>
+          <h4 class="service-heading">Salon</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+        <div class="col-md-6 mt-5">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Fotografia</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+        <div class="col-md-6 mt-5">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-music fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Animacion</h4>
           <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
         </div>
       </div>
@@ -43,7 +59,7 @@ require 'Header.php';
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Portfolio</h2>
+          <h2 class="section-heading text-uppercase">Portafolio</h2>
           <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
       </div>
@@ -55,11 +71,10 @@ require 'Header.php';
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
+            <img class="img-fluid" src="../img/boda1.jpg" alt="">
           </a>
           <div class="portfolio-caption">
-            <h4>Threads</h4>
-            <p class="text-muted">Illustration</p>
+            <h4>Bodas</h4>
           </div>
         </div>
         <div class="col-md-4 col-sm-6 portfolio-item">
@@ -69,11 +84,10 @@ require 'Header.php';
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="">
+            <img class="img-fluid" src="../img/quince1.jpg" alt="">
           </a>
           <div class="portfolio-caption">
-            <h4>Explore</h4>
-            <p class="text-muted">Graphic Design</p>
+            <h4>15 Años</h4>
           </div>
         </div>
         <div class="col-md-4 col-sm-6 portfolio-item">
@@ -83,11 +97,10 @@ require 'Header.php';
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="">
+            <img class="img-fluid" src="../img/birthday2.jpg" alt="">
           </a>
           <div class="portfolio-caption">
-            <h4>Finish</h4>
-            <p class="text-muted">Identity</p>
+            <h4>Cumpleaños</h4>
           </div>
         </div>
         <div class="col-md-4 col-sm-6 portfolio-item">
@@ -97,11 +110,10 @@ require 'Header.php';
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">
+            <img class="img-fluid" src="../img/Bautimo1.jpg" alt="">
           </a>
           <div class="portfolio-caption">
-            <h4>Lines</h4>
-            <p class="text-muted">Branding</p>
+            <h4>Bautizos</h4>
           </div>
         </div>
         <div class="col-md-4 col-sm-6 portfolio-item">
@@ -111,11 +123,10 @@ require 'Header.php';
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="">
+            <img class="img-fluid" src="../img/friends1.jpg" alt="">
           </a>
           <div class="portfolio-caption">
-            <h4>Southwest</h4>
-            <p class="text-muted">Website Design</p>
+            <h4>Reuniones</h4>
           </div>
         </div>
         <div class="col-md-4 col-sm-6 portfolio-item">
@@ -125,11 +136,10 @@ require 'Header.php';
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="">
+            <img class="img-fluid" src="../img/party1.jpg" alt="">
           </a>
           <div class="portfolio-caption">
-            <h4>Window</h4>
-            <p class="text-muted">Photography</p>
+            <h4>Integraciones</h4>
           </div>
         </div>
       </div>
@@ -141,8 +151,8 @@ require 'Header.php';
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">About</h2>
-          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+          <h2 class="section-heading text-uppercase">Categorias</h2>
+          <h3 class="section-subheading text-muted">En EventosGuatoc tenemos diferentes categorias de precios para que puedas elegir la que mas te convenga</h3>
         </div>
       </div>
       <div class="row">
@@ -150,65 +160,48 @@ require 'Header.php';
           <ul class="timeline">
             <li>
               <div class="timeline-image">
-                <img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">
+                <img class="rounded-circle img-fluid" src="../img/bronce.png" alt="">
               </div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
-                  <h4>2009-2011</h4>
-                  <h4 class="subheading">Our Humble Beginnings</h4>
+                  <h4 class="subheading">Basico</h4>
                 </div>
                 <div class="timeline-body">
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                  <p class="text-muted">Si lo que buscas es calidad a un menor precio, aqui podras encontrar los paquetes mas economicos que no podras conseguir en ningun otro lugar</p>
                 </div>
               </div>
             </li>
             <li class="timeline-inverted">
               <div class="timeline-image">
-                <img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">
+                <img class="rounded-circle img-fluid" src="../img/silver.png" alt="">
               </div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
-                  <h4>March 2011</h4>
-                  <h4 class="subheading">An Agency is Born</h4>
+                  <h4 class="subheading">Estandar</h4>
                 </div>
                 <div class="timeline-body">
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                  <p class="text-muted">Si quieres un evento memorable para ti y tus invitados; con calidad y buen servicio y que a la vez su costo no sea tan elevado, aqui lo podras encontrar</p>
                 </div>
               </div>
             </li>
             <li>
               <div class="timeline-image">
-                <img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">
+                <img class="rounded-circle img-fluid" src="../img/gold.png" alt="">
               </div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
-                  <h4>December 2012</h4>
-                  <h4 class="subheading">Transition to Full Service</h4>
+                  <h4 class="subheading">Premium</h4>
                 </div>
                 <div class="timeline-body">
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                  <p class="text-muted">Si deseas un evento a un nivel superior: vanguardista y de calidad, con los mejores servicios y paquetes para el usuario.Aqui encontraras la mas alta calidad para tu evento</p>
                 </div>
               </div>
             </li>
             <li class="timeline-inverted">
               <div class="timeline-image">
-                <img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">
-              </div>
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h4>July 2014</h4>
-                  <h4 class="subheading">Phase Two Expansion</h4>
-                </div>
-                <div class="timeline-body">
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                </div>
-              </div>
-            </li>
-            <li class="timeline-inverted">
-              <div class="timeline-image">
-                <h4>Be Part
-                  <br>Of Our
-                  <br>Story!</h4>
+                <h4>Queremos ser
+                  <br>parte de
+                  <br>tu historia!</h4>
               </div>
             </li>
           </ul>
@@ -222,15 +215,15 @@ require 'Header.php';
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+          <h2 class="section-heading text-uppercase">Nuestras increible equipo de Empresas</h2>
+          <h3 class="section-subheading text-muted">Contamos con las empresas mas reconocidas a nivel regional</h3>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="team-member">
             <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="">
-            <h4>Kay Garland</h4>
+            <h4>Restaurante Bar Son Arrieros</h4>
             <p class="text-muted">Lead Designer</p>
             <ul class="list-inline social-buttons">
               <li class="list-inline-item">

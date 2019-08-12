@@ -41,6 +41,6 @@ require 'Header.php';
           </section>
       </div>
 <?php
-require '../Footer.php';
+require '../Shared/Footer.php';
 }
 ?>

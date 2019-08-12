@@ -11,7 +11,7 @@
     background: url(../img/friends.jpg) top center fixed;
 }
 .logo{
-    font-size: 30px;
+    font-size: 3em!important;
     font-family: Edwardian Script ITC;
 }
 .logo:hover{
@@ -46,7 +46,7 @@ transform: scale(1.05);
 .menu ul li a{
     padding:10px 20px;
 	display: block;
-	color:#ffffff;
+	color:#888686;
 	text-decoration: none;
 }
 .enlaces:hover{
@@ -114,13 +114,4 @@ footer{
     background-attachment: fixed;
     position: center center;
     background-repeat: no-repeat;
-}
-.inicio{
-    background-image: url(../img/bfg2.jpg);
-}
-.log{
-    background-image: url(../img/Login.jpg);
-}
-.plan{
-    background-image: url(../img/bkg.jpg); 
 }
