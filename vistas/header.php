@@ -33,7 +33,7 @@
             <a class="nav-link js-scroll-trigger" href="#team">Equipo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="Empresa/Login.php">Proveedores</a>
+            <a class="nav-link js-scroll-trigger ml-3" href="Empresa/Login.php">Proveedores</a>
           </li>
           <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="Usuario/Registro.php">Registrate</a>

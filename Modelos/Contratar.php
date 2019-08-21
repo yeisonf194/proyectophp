@@ -1,7 +1,6 @@
 <?php
 include '../config/Conexion.php';
 session_start(); 
-$restaurante;
 switch ($_GET["op"]) {
     case 'addevent':
         $tipoevento=$_POST["tipoevento"];
@@ -26,8 +25,8 @@ switch ($_GET["op"]) {
             }
     break;
     case 'restaurante':
-        $restaurante=$_POST["restaurante"];
-            echo $restaurante;
+        $servicio=$_POST["idservicio"];
+            echo $servicio;
          //Ejecutanto insercion a la base de datos
         // $insertar="INSERT INTO evento(idusuario, idtipoevento, fechareserva, fechaentregahora, cantidadpersonas, precio, abono, saldo) 
         //             VALUES ('$usuario', '$tipoevento', '$time', '$fechaEntrega', '$asistentes', 0, 0, 0)";

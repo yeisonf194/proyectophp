@@ -7,11 +7,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>EventosGuatoc</title>
-  <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/agency.min.css" rel="stylesheet">
+  <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../css/agency.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="icon" type="image/png" href="../../img/icon.png"/>
+  <link rel="icon" type="image/png" href="../../../img/icon.png"/>
 </head>
 <body id="page-top">
 
@@ -24,9 +24,9 @@
 <!-- Barra lateral -->
   <div id="wrapper">
     <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Index.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../Index.php">
         <div class="sidebar-brand-icon">
-        <img src="../../img/iwhite.png" alt="EventosGuatoc" width="35px">
+        <img src="../../../img/iwhite.png" alt="EventosGuatoc" width="35px">
         </div>
         <div class="sidebar-brand-text mx-3"></div>
       </a>
@@ -83,9 +83,9 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="Empresa/Index.php">Empresa</a>
-            <a class="collapse-item" href="Evento/Index.php">Eventos</a>
-            <a class="collapse-item" href="forgot-password.html">Servicios</a>
+            <a class="collapse-item" href="../Empresa/Index.php">Empresa</a>
+            <a class="collapse-item" href="../Evento/Index.php">Eventos</a>
+            <a class="collapse-item" href="../Servicio/Index.php">Servicios</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.html">404 Page</a>
@@ -293,18 +293,18 @@
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Perfil
+                  Profile
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Ajustes
+                  Settings
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Actividad
+                  Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="../../Modelos/Registrar.php?op=salir" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="../../../Modelos/Registrar.php?op=salir" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cerrar Sesion
                 </a>
@@ -320,5 +320,28 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Inicio</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
           <!-- Content Row -->
           <div class="row">
+          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Realmente deseas abandonar EventosGuatoc?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Confirma si deseas cerrar tu sesion</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="../../../Modelos/Registrar.php?op=salir">Cerrar Sesion</a>
+        </div>
+      </div>
+    </div>
+  </div>

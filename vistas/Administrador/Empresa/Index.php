@@ -3,11 +3,10 @@ session_start();
 if(!isset($_SESSION["rol"])) { // en esta linea se valida que existan datos en la variable de sesion
   header("Location:../../Shared/Login.php");
 }else{
-require 'Header.php';
+require '../Shared/Header.php';
 require '../../../Config/Conexion.php';
 ?>
 <div class="container">
-        <section class="row d-flex justify-content-center">
                 <article class="col">
                     <h1 class="text-center">Empresas</h1><br><br>
                     <div>
@@ -45,7 +44,6 @@ require '../../../Config/Conexion.php';
                         <a href="AgregaEmpresa.php" class="btn btn-primary">Agregar Empresa</a><br><br>
                     </div>
                 </article>
-            </section> 
    </div>
 
 

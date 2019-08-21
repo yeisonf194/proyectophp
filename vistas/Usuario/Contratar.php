@@ -3,288 +3,199 @@ session_start();
 if(!isset($_SESSION["Nombre"])) { // en esta linea se valida que existan datos en la variable de sesion
   header("Location:../Shared/Login.php");
 }else{
-require '../Shared/Header.php';
+require 'Header.php';
 require '../../Config/Conexion.php';
 ?>
-  <section class="page-section" id="portfolio">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Servicios</h2>
-          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-4 col-sm-6 portfolio-item">
-          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="../../img/restaurant.jpg" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4 class="text-danger">Restaurante</h4>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 portfolio-item">
-          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="../../img/licorera.jpg" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4 class="text-danger">Licorera</h4>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 portfolio-item">
-          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="../../img/fotografia.jpg" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4 class="text-danger">Fotografia</h4>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 portfolio-item">
-          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="../../img/restaurant.jpg" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4 class="text-danger">Salon</h4>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 portfolio-item">
-          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="../../img/licorera.jpg" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4 class="text-danger">Animacion</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl"></div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="modal-body">
-                <!-- Project Details Go Here -->
-                <h2 class="text-uppercase">Restaurante</h2>
-                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                <form method="POST" action="../../Modelos/procesosUsuario.php?op=restaurante" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%">
-                        <?php 
-                            $consulta="SELECT * FROM servicio WHERE idpedido=0 AND idempresa=2";
-                            $resultado=mysqli_query($conexion,$consulta);
-                            while($mostrar=mysqli_fetch_array($resultado)){
-                            ?>
-                                    <div class="col">
-                                        <input type="checkbox" name="restaurante" value="<?php echo $mostrar['idservicio'] ?>"><?php echo $mostrar['nombre'] ?>
-                                    </div>
-                            <?php
-                            }
-                            ?> 
-                            <p><button type="submit" class="btn btn-primary">Guardar</button></p>
-                        </form><br>
-                <button class="btn btn-primary" data-dismiss="modal" type="button">
-                  <i class="fas fa-times"></i>
-                  Close Project</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="container m-3" id="portfolio">
+  <div class="row d-flex">
+  <form action="../../Modelos/Usuario.php?op=contratar" method="POST">
+  <h1 class="text-center">Contratar</h1><br><br>
+  <p>
+  <span>
+    <label for="asistentes">Tipo de Evento</label>
+    <select name="tipoevento" style="border-radius:5px; color:#424141; width: 20%" required>
+    <?php 
+      $consulta="SELECT * FROM tipoevento WHERE condicion=1";
+      $resultado=mysqli_query($conexion,$consulta);
+      while($mostrar=mysqli_fetch_array($resultado)){
+      ?>
+      <option value="<?php echo $mostrar['idtipoevento'] ?>"><?php echo $mostrar['nombre'].' '.$mostrar['categoria']?>
+    <?php
+      }
+    ?>
+    </select>
+  </span>
+  </p>
+  <p>
+  <span>
+    <label for="asistentes">Numero de Asistentes</label>
+    <input type="text" name="asistentes" placeholder="Invitados" style="border-radius:5px; color:#424141; width: 20%" required>
+  </span>
+  <span class="ml-5">
+    <label for="fechaentrega">Fecha del Evento</label>
+    <input type="date" name="fechaentrega" style="border-radius:5px; color:#424141; width: 20%" required>
+  </span><br><br><br>
+  </p>
+    <article class="col-12">
+        <h1>Restaurante</h1><br><br>
+              <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
+                <thead>
+                  <tr>
+                  <th style="padding: 10px; width: 200px; text-align: center">Imagen</th>
+                    <th style="padding: 10px; width: 200px; text-align: center">Nombre</th>
+                    <th style="padding: 10px; width: 200px; text-align: center">Especificaciones</th>
+                    <th style="padding: 10px; width: 200px; text-align: center">Precio</th>
+                    <th style="padding: 5px; width: 300px; text-align: center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $precio="SELECT MAX(precio) as total FROM servicio WHERE idempresa=2";
+                    $resul=$conexion->query($precio);
+                    $rango=$resul->fetch_assoc();
+                    $igualando=$rango["total"];
+                    $dividiendo=$igualando/3;
+                    $consulta="SELECT * FROM servicio WHERE idempresa=2 AND precio<=$dividiendo";
+                    $resultado=mysqli_query($conexion,$consulta);
+                    while($mostrar=mysqli_fetch_array($resultado)){
+                  ?>
+                    <tr>
+                      <td style="padding: 10px; text-align: center"><img src="../../img/boda1.jpg" alt="boda" width="50%"></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
+                      <td style="padding: 10px; text-align: center"><input type="radio" value="<?php echo $mostrar['idservicio'] ?>" name="restaurante"> Comprar
+                      </td>
+                    </tr>
+                  <?php
+                    }
+                  ?>
+                  </tbody>
+                </table><br><br>
+        </article>
+        <article class="col-12 mt-5">
+        <h1>Licor</h1><br><br>
+              <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
+                <thead>
+                  <tr>
+                    <th style="padding: 20px; width: 200px; text-align: center">Nombre</th>
+                    <th style="padding: 20px; width: 200px; text-align: center">Especificaciones</th>
+                    <th style="padding: 20px; width: 200px; text-align: center">Precio</th>
+                    <th style="padding: 20px; width: 300px; text-align: center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $consulta="SELECT * FROM servicio WHERE idempresa=3";
+                    $resultado=mysqli_query($conexion,$consulta);
+                    while($mostrar=mysqli_fetch_array($resultado)){
+                  ?>
+                    <tr>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
+                      <td style="padding: 10px; text-align: center"><input type="radio" value="<?php echo $mostrar['idservicio'] ?>" name="licor"> Comprar
+                      </td>
+                    </tr>
+                  <?php
+                    }
+                  ?>
+                  </tbody>
+                </table><br><br>
+        </article>
+        <article class="col-12 mt-5">
+        <h1>Fotografia</h1><br><br>
+              <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
+                <thead>
+                  <tr>
+                    <th style="padding: 20px; width: 200px; text-align: center">Nombre</th>
+                    <th style="padding: 20px; width: 200px; text-align: center">Especificaciones</th>
+                    <th style="padding: 20px; width: 200px; text-align: center">Precio</th>
+                    <th style="padding: 20px; width: 300px; text-align: center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $consulta="SELECT * FROM fotografia";
+                    $resultado=mysqli_query($conexion,$consulta);
+                    while($mostrar=mysqli_fetch_array($resultado)){
+                  ?>
+                    <tr>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
+                      <td style="padding: 10px; text-align: center"><input type="radio" value="<?php echo $mostrar['idfotografia'] ?>" name="fotografia"> Comprar
+                      </td>
+                    </tr>
+                  <?php
+                    }
+                  ?>
+                  </tbody>
+                </table><br><br>
+        </article>
+        <article class="col-12 mt-5">
+        <h1>Salon</h1><br><br>
+              <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
+                <thead>
+                  <tr>
+                    <th style="padding: 20px; width: 200px; text-align: center">Nombre</th>
+                    <th style="padding: 20px; width: 200px; text-align: center">Capacidad</th>
+                    <th style="padding: 20px; width: 200px; text-align: center">Precio</th>
+                    <th style="padding: 20px; width: 300px; text-align: center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $consulta="SELECT * FROM salon";
+                    $resultado=mysqli_query($conexion,$consulta);
+                    while($mostrar=mysqli_fetch_array($resultado)){
+                  ?>
+                    <tr>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
+                      <td style="padding: 10px; text-align: center"><input type="radio" value="<?php echo $mostrar['idsalon'] ?>" name="salon"> Comprar
+                      </td>
+                    </tr>
+                  <?php
+                    }
+                  ?>
+                  </tbody>
+                </table><br><br>
+        </article>
+        <article class="col-12 mt-5">
+        <h1>Animacion</h1><br><br>
+              <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
+                <thead>
+                  <tr>
+                    <th style="padding: 20px; width: 200px; text-align: center">Tiempo</th>
+                    <th style="padding: 20px; width: 200px; text-align: center">Especificaciones</th>
+                    <th style="padding: 20px; width: 200px; text-align: center">Precio</th>
+                    <th style="padding: 20px; width: 300px; text-align: center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    $consulta="SELECT * FROM animacion";
+                    $resultado=mysqli_query($conexion,$consulta);
+                    while($mostrar=mysqli_fetch_array($resultado)){
+                  ?>
+                    <tr>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
+                      <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
+                      <td style="padding: 10px; text-align: center"><input type="radio" value="<?php echo $mostrar['idanimacion'] ?>" name="animacion"> Comprar
+                      </td>
+                    </tr>
+                  <?php
+                    }
+                  ?>
+                  </tbody>
+                </table><br><br>
+        </article>
+        <button type="submit" class="btn btn-primary">Comprar</button>
   </div>
-
-  <!-- Modal 2 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl"></div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="modal-body">
-                <!-- Project Details Go Here -->
-                <h2 class="text-uppercase">Licores</h2>
-                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                <form method="POST" action="../../Modelos/procesosUsuario.php?op=licor" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%">
-                        <?php 
-                            $consulta="SELECT * FROM servicio WHERE idpedido=0 AND idempresa=4";
-                            $resultado=mysqli_query($conexion,$consulta);
-                            while($mostrar=mysqli_fetch_array($resultado)){
-                            ?>
-                                    <div class="col">
-                                        <input type="checkbox" name="licor" value="<?php echo $mostrar['idservicio'] ?>"><?php echo $mostrar['nombre'] ?>
-                                    </div>
-                            <?php
-                            }
-                            ?> 
-                            <p><button type="submit" class="btn btn-primary">Guardar</button></p>
-                        </form><br>
-                <button class="btn btn-primary" data-dismiss="modal" type="button">
-                  <i class="fas fa-times"></i>
-                  Close Project</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl"></div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="modal-body">
-                <!-- Project Details Go Here -->
-                <h2 class="text-uppercase">Fotografia</h2>
-                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                <form method="POST" action="../../Modelos/Registrar.php?op=ingreso" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%">
-                        <?php 
-                            $consulta="SELECT * FROM fotografia WHERE idpedido=0";
-                            $resultado=mysqli_query($conexion,$consulta);
-                            while($mostrar=mysqli_fetch_array($resultado)){
-                            ?>
-                                    <div class="col">
-                                        <input type="checkbox"><?php echo $mostrar['nombre'] ?>
-                                    </div>
-                            <?php
-                            }
-                            ?> 
-                        </form><br>
-                <button class="btn btn-primary" data-dismiss="modal" type="button">
-                  <i class="fas fa-times"></i>
-                  Close Project</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 4 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl"></div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="modal-body">
-                <!-- Project Details Go Here -->
-                <h2 class="text-uppercase">Salon</h2>
-                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                <form method="POST" action="../../Modelos/Registrar.php?op=ingreso" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%">
-                        <?php 
-                            $consulta="SELECT * FROM salon WHERE idpedido=0";
-                            $resultado=mysqli_query($conexion,$consulta);
-                            while($mostrar=mysqli_fetch_array($resultado)){
-                            ?>
-                                    <div class="col">
-                                        <input type="checkbox"><?php echo $mostrar['nombre'] ?>
-                                    </div>
-                            <?php
-                            }
-                            ?> 
-                        </form><br>
-                <button class="btn btn-primary" data-dismiss="modal" type="button">
-                  <i class="fas fa-times"></i>
-                  Close Project</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 5 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl"></div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="modal-body">
-                <!-- Project Details Go Here -->
-                <h2 class="text-uppercase">Animacion</h2>
-                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                <form method="POST" action="../../Modelos/Registrar.php?op=ingreso" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%">
-                        <?php 
-                            $consulta="SELECT * FROM animacion WHERE idpedido=0";
-                            $resultado=mysqli_query($conexion,$consulta);
-                            while($mostrar=mysqli_fetch_array($resultado)){
-                            ?>
-                                    <div class="col">
-                                        <input type="checkbox"><?php echo $mostrar['nombre'] ?>
-                                    </div>
-                            <?php
-                            }
-                            ?> 
-                        </form><br>
-                <button class="btn btn-primary" data-dismiss="modal" type="button">
-                  <i class="fas fa-times"></i>
-                  Close Project</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 <?php
 require '../Shared/Footer.php';
 }

@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" href="../../img/icon.png"/>
 </head>
 <body id="page-top" style="text-align: center; color: white; background-image: url(../../img/black.png); background-repeat: no-repeat; background-attachment: scroll; background-position: center center; background-size: cover">
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background: -webkit-linear-gradient(top,  rgba(0,0,0,255) 30%,rgba(0,0,0,0) 100%)">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="../Index.php">EventosGuatoc</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
             <a class="nav-link js-scroll-trigger" href="../Index.php">Equipo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="../Empresa/Login.php">Proveedores</a>
+            <a class="nav-link js-scroll-trigger ml-3" href="../Empresa/Login.php">Proveedores</a>
           </li>
           <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="../Usuario/Registro.php">Registrate</a>

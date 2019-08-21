@@ -25,7 +25,7 @@ switch ($_GET["op"]) {
                 header('Location: ../vistas/agregarEmpresa.php');
             }else{
                 echo '<script>alert("Empresa registrada")</script>';
-                header('Location: ../vistas/empresa.php');
+                header('Location: ../vistas/Administrador/Empresa/Index.php');
             }
         }
     break;
@@ -53,23 +53,24 @@ switch ($_GET["op"]) {
         $empresa=$_POST["empresa"];
         $especificaciones=$_POST["especificaciones"];
         $precio=$_POST["precio"];
+        $idempresa=$_SESSION["idempresa"];
+        echo $idempresa;
+        // //Insertando servicio
+        // $insertar="INSERT INTO servicio(nombre, idempresa, especificaciones, precio) 
+        //             VALUES ('$nombre', '$empresa', '$especificaciones', '$precio')";
 
-        //Insertando servicio
-        $insertar="INSERT INTO servicio(nombre, idempresa, especificaciones, precio) 
-                    VALUES ('$nombre', '$empresa', '$especificaciones', '$precio')";
-
-        //Validando usuario existente
-        $verificarServicio=mysqli_query($conexion, "SELECT * FROM servicio WHERE nombre='$nombre'");
-        if (mysqli_num_rows($verificarServicio)>0){
-            echo "<script>alert('Este servicio ya se encuentra registrado');window.location= '../vistas/Administrador/Servicio/Agregar.php'</script>";
-        }else{
-            $resultado = mysqli_query($conexion, $insertar);
-            if (!$resultado){
-                echo "<script>alert('Error');window.location= '../vistas/Administrador/Servicio/Agregar.php'</script>";
-            }else{
-                echo "<script>alert('Servicio Agregado');window.location= '../vistas/Administrador/Servicio/Index.php'</script>";
-            }
-        }
+        // //Validando usuario existente
+        // $verificarServicio=mysqli_query($conexion, "SELECT * FROM servicio WHERE nombre='$nombre'");
+        // if (mysqli_num_rows($verificarServicio)>0){
+        //     echo "<script>alert('Este servicio ya se encuentra registrado');window.location= '../vistas/Empresa/producto/agregar.php'</script>";
+        // }else{
+        //     $resultado = mysqli_query($conexion, $insertar);
+        //     if (!$resultado){
+        //         echo "<script>alert('Error');window.location= '../vistas/Empresa/producto/agregar.php'</script>";
+        //     }else{
+        //         echo "<script>alert('Servicio Agregado');window.location= '../vistas/Empresa/producto/Index.php'</script>";
+        //     }
+        // }
     break;
     case 'agregarEvento':
         $nombre=$_POST["nombre"];
@@ -82,7 +83,7 @@ switch ($_GET["op"]) {
 
         $resultado = mysqli_query($conexion, $insertar);
         if (!$resultado){
-            echo "<script>alert('Error');window.location= '../vistas/Administrador/Evento/Agregar.php'</script>";
+            echo "<script>alert('Error');window.location= '../vistas/Administrador/Evento/Index.php'</script>";
         }else{
             echo "<script>alert('Evento Agregado');window.location= '../vistas/Administrador/Evento/Index.php'</script>";
         }

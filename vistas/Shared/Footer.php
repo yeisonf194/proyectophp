@@ -54,5 +54,7 @@
   <script src="../../js/jquery.easing.min.js"></script>
   <script src="../../js/jqBootstrapValidation.js"></script>
   <script src="../../js/agency.min.js"></script>
+  <script src="../../js/sb-admin-2.min.js"></script>
 </body>
 </html>
+
