@@ -52,42 +52,111 @@ require '../../Config/Conexion.php';
                         $idempresa=$_SESSION["idempresa"];
                         switch($idempresa){
                             case '4':
-                                $consulta="SELECT COUNT(nombre) as conteo FROM fotografia";
+                                $consulta="SELECT COUNT(p.idfotografia) as conteo FROM fotografia s, pedido p, empresa e WHERE p.idfotografia=s.idfotografia AND s.idempresa=e.idempresa AND s.idempresa=$idempresa";
                                 $resul=$conexion->query($consulta);
                                 $resultado=$resul->fetch_assoc();
                                 $conteo=$resultado["conteo"];
                             break;
                             case '5':
-                                $consulta="SELECT COUNT(nombre) as conteo FROM salon";
+                                $consulta="SELECT COUNT(p.idsalon) as conteo FROM salon s, pedido p, empresa e WHERE p.idsalon=s.idsalon AND s.idempresa=e.idempresa AND s.idempresa=$idempresa";
                                 $resul=$conexion->query($consulta);
                                 $resultado=$resul->fetch_assoc();
                                 $conteo=$resultado["conteo"];
                             break;
                             case '6':
-                                $consulta="SELECT COUNT(nombre) as conteo FROM animacion";
+                                $consulta="SELECT COUNT(p.idanimacion) as conteo FROM animacion s, pedido p, empresa e WHERE p.idanimacion=s.idanimacion AND s.idempresa=e.idempresa AND s.idempresa=$idempresa";
                                 $resul=$conexion->query($consulta);
                                 $resultado=$resul->fetch_assoc();
                                 $conteo=$resultado["conteo"];
                             break;
                             default:
-                                $consulta="SELECT COUNT(nombre) as conteo FROM servicio WHERE idempresa=$idempresa";
+                                $consulta="SELECT COUNT(idproducto) as conteo FROM servicio WHERE idempresa=$idempresa";
                                 $resul=$conexion->query($consulta);
                                 $resultado=$resul->fetch_assoc();
                                 $conteo=$resultado["conteo"];
                             break;
                         }
                         ?> 
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Tiene <?php echo $conteo ?> pedidos</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Tiene <?php echo $conteo ?> pedidos <span class="badge badge-danger">1</span></div>
                         </div>
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    <?php if($conteo>0)
+                    {
+                    ?>
+                    <a class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-arrow-circle-right text-white"></i></a>
+                    <?php
+                    } ?>
+                      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="row my-3 mx-4 p-3">
+                              <div class="col-12"><h1 class="text-center">Pedidos</h1></div><hr>
+                              <?php
+                              $consulta=1;
+                              switch($idempresa){
+                                case '4':
+                                  $empresa='fotografia';
+                                  $servicio='idfotografia';
+                                  $consulta=1;
+                                break;
+                                case '5':
+                                  $empresa='salon';
+                                  $servicio='idsalon';
+                                  $consulta=1;
+                                break;
+                                case '6':
+                                  $empresa='animacion';
+                                  $servicio='idanimacion';
+                                  $consulta=1;
+                                break;
+                                default:
+                                $empresa='servicio';
+                                $servicio='idservicio';
+                                $consulta=2;
+                                break;
+                              }
+                              if($consulta==1){
+                              $resultado = mysqli_query($conexion, "SELECT	  u.nombre, u.apellido, t.nombre as evento, t.categoria, e.fechareserva, e.fechaentregahora, f.nombre as servicio 
+                              FROM	    usuario u, evento e, tipoevento t, pedido p, fotografia f, empresa em 
+                              WHERE	    e.idusuario=u.idusuario AND e.idtipoevento=t.idtipoevento AND p.idevento=e.idevento AND p.idfotografia=f.idfotografia AND f.idempresa=em.idempresa AND em.idempresa=$idempresa");
+                              while($mostrar=mysqli_fetch_array($resultado)){
+                              ?>
+                              <div class="col-10 mt-5">
+                                <h6><?php echo $mostrar['nombre'].' '.$mostrar['apellido'] ?></h6>
+                                <p>Ha contratado el servicio <b><?php echo $mostrar['servicio']?></b> para el evento tipo <?php echo $mostrar['evento'].' '.$mostrar['categoria'] ?></p>
+                                <p class="text-right"><span class="text-muted"><?php echo $mostrar['fechareserva']?></p><hr>
+                              </div>
+                              <div class="col-2 mt-5 text-right">
+                                <p class="text-muted">Detalles</p>
+                                <p><a class="btn btn-secondary" href="#"><i class="fas fa-plus"></i></a></p>
+                              </div>
+                            <?php
+                                }
+                              }else{
+                                $resultado = mysqli_query($conexion, "SELECT	  u.nombre, u.apellido, t.nombre as evento, t.categoria, e.fechareserva, e.fechaentregahora, pro.nombre as servicio 
+                                                                      FROM	    usuario u, evento e, tipoevento t, pedido p, servicio s, empresa em, producto pro
+                                                                      WHERE	    e.idusuario=u.idusuario AND e.idtipoevento=t.idtipoevento AND p.idevento=e.idevento AND p.idpedido=s.idpedido AND s.idempresa=em.idempresa AND em.idempresa=pro.idempresa AND pro.idproducto=s.idproducto AND em.idempresa=$idempresa");
+                                while($mostrar=mysqli_fetch_array($resultado)){
+                              ?>
+                              <div class="col-10 mt-5">
+                                <h6><?php echo $mostrar['nombre'].' '.$mostrar['apellido'] ?></h6>
+                                <p>Ha contratado el servicio <b><?php echo $mostrar['servicio']?></b> para el evento tipo <?php echo $mostrar['evento'].' '.$mostrar['categoria'] ?></p>
+                                <p class="text-right"><span class="text-muted"><?php echo $mostrar['fechareserva']?></p><hr>
+                              </div>
+                              <div class="col-2 mt-5 text-right">
+                                <p class="text-muted">Detalles</p>
+                                <p><a class="btn btn-secondary" href="#"><i class="fas fa-plus"></i></a></p>
+                              </div>
+                            <?php
+                                }
+                              }
+                            ?>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

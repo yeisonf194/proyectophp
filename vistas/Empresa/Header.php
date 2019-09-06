@@ -38,12 +38,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-tag"></i>
-          <span>Servicio</span>
+          <span>Productos</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="producto/Index.php">Inicio</a>
-            <a class="collapse-item" href="producto/Agregar.php">Agregar</a>
+            <a class="collapse-item" href="Producto.php?opcion=activo">Activos</a>
+            <a class="collapse-item" href="Producto.php?opcion=inactivo">Inactivos</a>
           </div>
         </div>
       </li>

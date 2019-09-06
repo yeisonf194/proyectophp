@@ -1,38 +1,35 @@
+<?php
+require '../../Config/Conexion.php';
+?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>EventosGuatoc</title>
-  <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/agency.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="icon" type="image/png" href="../../img/icon.png"/>
-</head>
-<body id="page-top">
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>EventosGuatoc</title>
+      <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
+      <link href="../../css/bootstrap.min.css" rel="stylesheet">
+      <link href="../../css/agency.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <link rel="icon" type="image/png" href="../../img/icon.png"/>
+    </head>
+  <body id="page-top">
 
-
-
-
-
-
-
-<!-- Barra lateral -->
-  <div id="wrapper">
-    <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Index.php">
-        <div class="sidebar-brand-icon">
-        <img src="../../img/iwhite.png" alt="EventosGuatoc" width="35px">
-        </div>
-        <div class="sidebar-brand-text mx-3"></div>
-      </a>
-      <hr class="sidebar-divider my-0">
-      <hr class="sidebar-divider">
-      <div class="sidebar-heading"></div>
+    <!-- Barra lateral -->
+    <div id="wrapper">
+      <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Index.php">
+          <div class="sidebar-brand-icon">
+            <img src="../../img/iwhite.png" alt="EventosGuatoc" width="35px">
+          </div>  
+          <div class="sidebar-brand-text mx-3"></div>
+        </a>
+        <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading"></div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -95,12 +92,121 @@
         </div>
       </li>
 
+    
+
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+        <a class="nav-link" data-toggle="modal" data-target="#modelId">
+        <i class="far fa-calendar-alt"></i>
+          <span>Eventos</span></a>
       </li>
+          <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Eventos</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php
+          if(!isset($_SESSION['evento'])){
+          ?>
+            <div class="modal-body text-center">
+            <h5 class="text-center">Aun no tienes Eventos</h5><br>
+            <a data-toggle="modal" data-target="#agregarevento" class="btn btn-primary text-white"><i class="fas fa-plus"></i> Agregar Evento</a>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          </div>
+          <?php
+          }else{
+          ?>
+          <div class="modal-body text-center">
+            <h5 class="text-center ">Evento <?php $tipoevento=$_SESSION['evento'][0]['tipoevento'];
+            $consulta = mysqli_query($conexion, "SELECT * FROM tipoevento WHERE idtipoevento=$tipoevento");
+            while($mostrar=mysqli_fetch_array($consulta)){
+              echo $mostrar['nombre'].' '.$mostrar['categoria'];
+            ?></h5>
+            <p class="text-secondary"><img src="../../img/loading3.gif" width="20%" alt=""> En proceso <a href="Contratar.php" class="btn btn-secondary ml-5"><i class="fas fa-arrow-right"></i></a></p>
+            <hr>
+            <p class="text-muted">No tienes ningun evento</p>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+          <?php
+            }
+          }
+          ?>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal Agregar Evento -->
+    <div class="portfolio-modal modal fade" id="agregarevento" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Agregar Evento</h2>
+                <p class="item-intro text-muted">No hay que dejar nada al azar.</p>
+                <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
+                <p>Necesitamos saber que tipo de evento deseas realizar, por favor indicanos el numero de asistentes y la fecha para la cual deseas la realizacion de tu evento.</p>
+                <form  method="POST" action="../../Modelos/Usuario.php?op=agregarEvento" style="background-color: rgba(0,0,0,0.1); border-radius:20px; padding: 40px; width:100%">
+                <div class="row">
+                  <div class="col-sm-12 col-lg-6">
+                      <p>
+                      <label for="name" class="text-white"><h5 class="text-secondary">Que tipo de evento deseas</h5></label>
+                      <select name="tipoevento" style="border-radius:5px; color:#424141; width: 100%" required>
+                      <?php
+                        $consulta=mysqli_query($conexion, "SELECT DISTINCT nombre FROM tipoevento WHERE condicion=1");
+                        while($mostrar=mysqli_fetch_array($consulta)){
+                      ?>
+                      <option value="<?php echo $mostrar['nombre'] ?>"><?php echo $mostrar['nombre']?></option>
+                      <?php
+                        }
+                      ?>
+                      </select>
+                      </p>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                      <p>
+                      <label for="fechaentrega"><h5 class="text-secondary">Fecha de realizacion</h5></label>
+                      <input type="date" name="fechaentrega" style="border-radius:5px; color:#424141; width: 100%" required>
+                      </p>
+                    </div>
+                    <div class="col-sm-12 col-lg-12">
+                      <p>
+                      <label for="asistentes"><h5 class="text-secondary">Numero de invitados</h5></label>
+                      <input type="text" name="asistentes" style="border-radius:5px; color:#424141; width: 100%" required>
+                      </p><br>
+                    </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Siguiente</button></p>
+                </form><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
@@ -317,26 +423,26 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <a href="Contratar.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus"></i> Agregar Evento</a>
-          </div>
+          
 
           <!-- Content Row -->
           <div class="row">
-          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Realmente deseas abandonar EventosGuatoc?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Confirma si deseas cerrar tu sesion</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="../../Modelos/Registrar.php?op=salir">Cerrar Sesion</a>
-        </div>
-      </div>
-    </div>
-  </div>
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Realmente deseas abandonar EventosGuatoc?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">Confirma si deseas cerrar tu sesion</div>
+                    <div class="modal-footer">
+                      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                      <a class="btn btn-primary" href="../../Modelos/Registrar.php?op=salir">Cerrar Sesion</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>

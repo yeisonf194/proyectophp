@@ -3,7 +3,7 @@ require 'HeaderIndex.php';
 ?>
 <section class="row justify-content-center">
     <article class="col-12">
-        <h1 class="text-center text-white">Inicio de Sesion</h1><br>
+        <h1 class="text-center text-white">Proveedores</h1><br>
     </article>
     <article>
         <form method="POST" action="../../Modelos/Empresa.php?op=ingresoEmpresa" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%">

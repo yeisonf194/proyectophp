@@ -84,7 +84,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="Empresa/Index.php">Empresa</a>
-            <a class="collapse-item" href="Evento/Index.php">Eventos</a>
+            <a class="collapse-item" href="Evento.php">Eventos</a>
             <a class="collapse-item" href="forgot-password.html">Servicios</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>

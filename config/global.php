@@ -1,4 +1,6 @@
 <?php
+define ("KEY", "eventos13");
+define ("COD", "AES-128-ECB");
 //Aqui se ingresa el Nombre del servidor de la base de datos 
 define ("DB_HOST", "localhost");
 
