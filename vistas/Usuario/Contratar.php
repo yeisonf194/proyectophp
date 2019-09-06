@@ -9,16 +9,17 @@ include '../../Modelos/Shoppingcart.php'
 ?>
 <div class="container m-3" style="width:100%">
   <?php
-  if(isset($_SESSION['evento'][0]['categoria'])){
-    $evento=$_SESSION['evento'][0]['tipoevento'];
+  switch($_GET["pagina"]){
+    case 'categoria':
     ?>
-    <form action="../../Modelos/Usuario.php?op=agregarEvento" method="POST">
+    <form action="../../Modelos/Usuario.php?op=agregarCategoria" method="POST">
       <div class="row">
         <div class="col-12"><h1 class="text-center">Elige una Categoria</h1></div>
         <div class="col-12"><p class="text-center">En Eventos Guatoc tu eliges la categoria de tu evento</p></div>
       </div>
       <div class="row justify-content-center mt-5">
       <?php
+      $evento=$_SESSION['eventos'][0]['tipoevento'];
         $consulta="SELECT categoria FROM tipoevento WHERE nombre='$evento' AND condicion=1";
         $resultado=mysqli_query($conexion,$consulta);
         while($mostrar=mysqli_fetch_array($resultado)){
@@ -32,9 +33,10 @@ include '../../Modelos/Shoppingcart.php'
       </div>
     </form>
     <?php
-  }else{
-  ?>
-  <div class="row d-flex">
+    break;
+    case 'contratar':
+    ?>
+    <div class="row d-flex">
     <a href="Shoppingcart.php" class="btn btn-primary "><i class="fas fa-shopping-cart"></i> Compras<?php echo(empty($_SESSION['carrito']))?'':'<span class="badge badge-pill badge-danger">'.count($_SESSION['carrito'])?></span></a>
     <?php
       $restaurante=true;
@@ -45,12 +47,6 @@ include '../../Modelos/Shoppingcart.php'
       if(empty($_SESSION["carrito"])){
       }else{
         foreach($_SESSION['carrito'] as $indice=>$producto){
-          if($producto['idempresa']==2){
-            $restaurante=false;
-          }
-          if($producto['idempresa']==3){
-            $licor=false;
-          }
           if($producto['idempresa']==4){
             $fotografia=false;
           }
@@ -385,7 +381,8 @@ include '../../Modelos/Shoppingcart.php'
     }
   ?>
   </div>
-  <?php
+    <?php
+    break;
   }
   ?>
 </div>

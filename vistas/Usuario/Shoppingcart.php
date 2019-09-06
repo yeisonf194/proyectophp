@@ -92,10 +92,145 @@ include '../../Modelos/Shoppingcart.php';
             </tbody>
           </table><br><br>
           <div class="row">
-              <div class="col text-center"><a href="Contratar.php" class="btn btn-primary">Agregar Producto</a></div>
-              <div class="col text-center"><a href="../../Modelos/Usuario.php?op=contratando" class="btn btn-primary">Siguiente</a></div>
+              <div class="col text-center"><a href="Contratar.php?pagina=contratar" class="btn btn-primary">Agregar Producto</a></div>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalQuickView">Siguiente</button>
           </div><br><br>
         </div>
+        
+<!-- Modal: modalQuickView -->
+<div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php
+foreach($_SESSION['evento'] as $indice=>$producto){
+  $evento=$producto['tipoevento'];
+  $entrega=$producto['fechaentrega'];
+  $asistentes=$producto['asistentes'];
+  $categoria=$producto['categoria'];
+  $tipoevento=$producto['idtipoevento'];
+}
+foreach($_SESSION['eventos'] as $indice=>$producto){
+  $evento=$producto['tipoevento'];
+  $entrega=$producto['fechaentrega'];
+  $asistentes=$producto['asistentes'];
+}
+$idusuario=$_SESSION['idusuario'];
+$resul=$conexion->query("SELECT nombre, apellido, documento FROM usuario WHERE idusuario=$idusuario");
+$key=$resul->fetch_assoc();
+$nombre=$key["nombre"];
+$apellido=$key["apellido"];
+$cedula=$key["documento"];
+$nombreusuario=$nombre. $apellido;
+ini_set('date.time','America/Bogota');
+$facturacion = date('Y-m-d', time());
+$fechareserva = date('Ymd', time());
+$codigofactura=$fechareserva.$tipoevento.$idusuario;
+?>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-2">
+            <img src="../../img/icon.png" alt="" width="50%">
+          </div>
+          <div class="col-lg-10"><h2 class="h2-responsive ml-5"><strong>Factura de Compra</strong></h2></div>
+        </div>
+        <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!-- <h3 class="panel-title">Cabecera</h3> -->
+					<hr>
+                    <div class="row">
+                        <div class="col-4"><p>Nombre: <?php echo $nombreusuario?></p></div>
+                        <div class="col-4"><p>Fecha factura: <?php echo $facturacion?></p></div>
+                        <div class="col-4"><p><img src="../../js/barcode.php?text=EV<?php echo $codigofactura?>&size=30&orientation=horizontal&codetype=Code39" alt=""></p></div>
+                    </div> <!-- row -->
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6"> 
+                          <address>
+                           <strong class="">Eventos Guatoc</strong><br class="">
+                            Carrera 6 No. 26 A<br class="">
+                            eventosguatocoficial@gmail.com<br class="">
+                            754098675<br class="">                          
+                           </address>
+                        </div>
+                   </div> <!-- row -->
+				</div> <!-- panel heading -->
+				<div class="panel-body mt-3">
+				  <h3 class="panel-title">Detalle <small> <?php echo $evento.' '.$categoria?></small></h3>
+				  
+				  <table class="table table-condensed">
+					<thead>
+					  <tr>
+						<th class="">Producto</th>
+						<th class="">Nombre</th>
+						<th class="">Detalles</th>
+						<th class="">Cantidad</th>
+						<th class="">Precio</th>
+						<th class="">Total</th>
+					  </tr>
+					</thead>
+					<tbody>
+          <?php
+          $contador=1;
+          foreach($_SESSION['carrito'] as $indice=>$producto){
+          ?>
+					  <tr>
+						<td class=""><?php echo $contador?></td>
+						<td class=""><?php echo $producto['nombre']?></td>
+						<td class=""><?php echo $producto['especificaciones']?></td>
+            <td class=""><?php 
+              if($producto['idempresa']==2 || $producto['idempresa']==3){
+                if($producto['idempresa']==2){
+                echo $asistentes;
+                }else{
+                  $botellas=round(($asistentes/6),0,PHP_ROUND_HALF_UP);
+                  echo $botellas;
+                }
+              }else{
+                echo '1';
+              }
+              ?></td>
+						<td class=""><?php echo $producto['precio']?></td>
+						<td class=""><?php 
+              if($producto['idempresa']==2 || $producto['idempresa']==3){
+                if($producto['idempresa']==2){
+                echo $totalservicio=$producto['precio']*$asistentes;
+                }else{
+                  $botellas=round(($asistentes/6),0,PHP_ROUND_HALF_UP);
+                  echo $totalservicio=$producto['precio']*$botellas;
+                }
+              }else{
+                echo $totalservicio=$producto['precio'];
+              }
+              ?></td>
+					  </tr>
+            <?php
+            $contador++;
+          }
+            ?>
+					  </tr>
+					</tbody>
+				  </table>
+				</div> <!-- panel body --> 
+        </div>
+        <div class="row">
+          <div class="col-12 my-3 p-5 text-center"><input type="checkbox" required> Yo <?php echo $nombreusuario?> con cedula No. <?php echo $cedula ?> indico aceptar los terminos y condiciones de EventosGuatoc por motivo de contratacion de <?php echo $contador-1?>
+          servicios para el Evento tipo <?php echo $evento.' '.$categoria?> por un total de $<?php echo $total?>. Evento programado para el dia <?php echo $entrega?> con un total de 
+          <?php echo $asistentes?> invitados. <br><br><p><strong>Atencion: </strong>Para hacer efectiva la contratacion para su evento debera acercarse dentro de los proximos cinco (5) dias habiles a la Carrera 6 No. 26 A para realizar el pago correspondiente al evento. Recuerde llevar impresa esta factura</p> <hr></div>
+        </div>
+      </div>
+      <div class="col text-center">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      <a href="../../Modelos/Usuario.php?op=contratando" class="btn btn-danger">Finalizar</a>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+        <!-- container -->
+
     </article>
     <?php
     }

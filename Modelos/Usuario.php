@@ -6,31 +6,56 @@ switch ($_GET["op"]) {
         $tipoevento=$_POST["tipoevento"];
         $asistentes=$_POST["asistentes"];
         $fechaEntrega=$_POST["fechaentrega"];
-        $categoria=$_POST["categoria"];
-        if($categoria!=''){
-            echo 'Entro';
-            // $$evento=$_SESSION['evento'][0]['categoria']=$categoria;
-        }
-        $categoria='';
-        // ini_set('date.time','America/Bogota');
-        // $time = date('Y-m-d, H:i:s', time());
-        // $usuario=$_SESSION["idusuario"];
-        if(!isset($_SESSION['evento'])){
+        if(!isset($_SESSION['eventos'])){
             $informacion=array(
               'tipoevento'=>$tipoevento,
-              'categoria'=>$categoria,
               'fechaentrega'=>$fechaEntrega,
               'asistentes'=>$asistentes
+            );
+            $_SESSION['eventos'][0]=$informacion;
+          }
+          if(isset($_SESSION['eventos'])){
+            header("Location: ../vistas/Usuario/Contratar.php?pagina=categoria");
+          }
+    break;
+    case 'agregarCategoria':
+        foreach($_SESSION['eventos'] as $indice=>$producto){
+            $evento=$producto['tipoevento'];
+            $entrega=$producto['fechaentrega'];
+            $asistentes=$producto['asistentes'];
+        }
+        $categoriallega=$_POST["categoria"];
+        $consultando=$conexion->query("SELECT idtipoevento as idevento FROM tipoevento WHERE nombre='$evento' AND categoria='$categoriallega'");
+        $consulta=$consultando->fetch_assoc();
+        $idtipoevento=$consulta["idevento"];
+        if(!isset($_SESSION['evento'])){
+            $informacion=array(
+              'idtipoevento'=>$idtipoevento,
+              'tipoevento'=>$evento,
+              'fechaentrega'=>$entrega,
+              'asistentes'=>$asistentes,
+              'categoria'=>$categoriallega
             );
             $_SESSION['evento'][0]=$informacion;
           }
           if(isset($_SESSION['evento'])){
-            header("Location: ../vistas/Usuario/Contratar.php");
+            header("Location: ../vistas/Usuario/Contratar.php?pagina=contratar");
           }
     break;
+    case 'factura':
+        foreach($_SESSION['evento'] as $indice=>$producto){
+            $evento=$producto['tipoevento'];
+            $entrega=$producto['fechaentrega'];
+            $asistentes=$producto['asistentes'];
+            $categoria=$producto['categoria'];
+            $tipoevento=$producto['idtipoevento'];
+            ini_set('date.time','America/Bogota');
+            $fechareserva = date('YmdH', time());
+        }
+        $factura;
+        echo $fechareserva;
+    break;
     case 'contratando':
-        // ini_set('date.time','America/Bogota');
-        // $fechareserva = date('Y-m-d, H:i:s', time());
         $idrestaurante=0;
         $idlicor=0;
         $idfotografia=0;
@@ -44,8 +69,27 @@ switch ($_GET["op"]) {
         $precioanima=0;
         $opcion=0;
         $opcionservicio=0;
+        $total=0;
+        foreach($_SESSION['evento'] as $indice=>$producto){
+            $evento=$producto['tipoevento'];
+            $entrega=$producto['fechaentrega'];
+            $asistentes=$producto['asistentes'];
+            $categoria=$producto['categoria'];
+            $tipoevento=$producto['idtipoevento'];
+            ini_set('date.time','America/Bogota');
+            $fechareserva = date('Y-m-d H:i:s', time());
+        }
         foreach($_SESSION['carrito'] as $indice=>$producto){
-            switch($producto['idempresa']){  
+            switch($producto['idempresa']){
+                case '2':
+                    $idrestaurante=$producto['idservicio'];
+                    $precioplato=$asistentes*$producto['precio'];
+                break;
+                case '3':
+                    $idlicor=$producto['idservicio'];
+                    $botellas=round(($asistentes/6),0,PHP_ROUND_HALF_UP);
+                    $preciolicor=$producto['precio']*$botellas;
+                break; 
                 case '4':
                     $idfotografia=$producto['idservicio'];
                     $preciofoto=$producto['precio'];
@@ -59,14 +103,7 @@ switch ($_GET["op"]) {
                     $precioanima=$producto['precio'];
                 break;
             }
-        }
-        $total=$precioplato+$preciolicor+$preciofoto+$preciosalon+$precioanima;
-        foreach($_SESSION['evento'] as $indice=>$informacion){
-            $idtipoevento=$informacion['tipoevento'];
-            $fechaEntrega=$informacion['fechaentrega'];
-            $asistentes=$informacion['asistentes'];
-            ini_set('date.time','America/Bogota');
-            $fechareserva = date('Y-m-d H:i:s', time());
+            $total=$total+$precioplato+$preciolicor+$preciofoto+$preciosalon+$precioanima;
         }
 
         if($idsalon!=0 && $idfotografia!=0 && $idanimacion==0){
@@ -97,14 +134,14 @@ switch ($_GET["op"]) {
             $opcionservicio=1;
         }
         $tbevento=mysqli_query($conexion,"INSERT INTO evento(idusuario, idtipoevento, fechareserva, fechaentregahora, cantidadpersonas, precio, abono, saldo, codigo)
-                                            VALUES ('$idusuario', '$idtipoevento', '$fechareserva', '$fechaEntrega', $asistentes, $total, 0, 0, 0)");
+                                            VALUES ('$idusuario', '$tipoevento', '$fechareserva', '$entrega', $asistentes, $total, 0, 0, 0)");
 
                                             
         $resul=$conexion->query("SELECT idevento as evento, fechareserva as fechareserva FROM evento WHERE fechareserva='$fechareserva' ");
         $key=$resul->fetch_assoc();
         $llave=$key["evento"];
         $insertar=$key["fechareserva"];
-
+        
         if($fechareserva==$insertar){
             switch($opcion){
                 case '1':
@@ -132,7 +169,7 @@ switch ($_GET["op"]) {
                     $tbpedido=mysqli_query($conexion,"INSERT INTO pedido(idevento, especificaciones) VALUES ($llave, 'Ninguna')");
                 break;
             }
-        } 
+        }
         $resul=$conexion->query("SELECT	p.idpedido as pedido, e.fechareserva as reserva FROM pedido p, evento e WHERE p.idevento=e.idevento AND e.fechareserva='$fechareserva'");
         $key=$resul->fetch_assoc();
         $pedido=$key["pedido"];
@@ -158,13 +195,17 @@ switch ($_GET["op"]) {
             if (!$tbservicio){
                 echo "<script>alert('Error al Insertar servicio');window.location= '../vistas/Usuario/Shoppingcart.php'</script>";
             }else{
-                echo "<script>alert('Evento guardado servicio');window.location= '../vistas/Usuario/Shoppingcart.php'</script>";
+                foreach($_SESSION['carrito'] as $indice=>$producto){
+                    unset($_SESSION['carrito'][$indice]);
+                }
+                foreach($_SESSION['evento'] as $indice=>$producto){
+                    unset($_SESSION['evento'][$indice]);
+                }
+                foreach($_SESSION['eventos'] as $indice=>$producto){
+                    unset($_SESSION['eventos'][$indice]);
+                }
+                echo "<script>alert('Evento guardado servicio');window.location= '../vistas/Usuario/Index.php'</script>";
             }
-        }
-        if (!$tbpedido){
-            echo "<script>alert('Error al Insertar');window.location= '../vistas/Usuario/Shoppingcart.php'</script>";
-        }else{
-            echo "<script>alert('Evento guardado');window.location= '../vistas/Usuario/Shoppingcart.php'</script>";
         }
     break;
     case 'insertar':

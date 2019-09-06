@@ -1,6 +1,6 @@
 <?php
 $mensaje="";
-$_SESSION['evento'][0]['asistentes'];
+$_SESSION['eventos'][0]['asistentes'];
 if(isset($_POST['btnAccion'])){
   $button=$_POST['btnAccion'];
   switch($button){

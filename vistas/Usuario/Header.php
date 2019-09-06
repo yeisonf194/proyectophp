@@ -111,7 +111,10 @@ require '../../Config/Conexion.php';
               </button>
           </div>
           <?php
-          if(!isset($_SESSION['evento'])){
+          $idusuario=$_SESSION['idusuario'];
+          $consulta=mysqli_query($conexion,"SELECT e.idevento as idevento FROM evento e, usuario u WHERE u.idusuario=$idusuario AND u.idusuario=e.idusuario");
+          if(empty($consulta)){
+          if(!isset($_SESSION['eventos'])){
           ?>
             <div class="modal-body text-center">
             <h5 class="text-center">Aun no tienes Eventos</h5><br>
@@ -123,14 +126,21 @@ require '../../Config/Conexion.php';
           </div>
           <?php
           }else{
+            foreach($_SESSION['evento'] as $indice=>$producto){
+              $evento=$producto['tipoevento'];
+              $entrega=$producto['fechaentrega'];
+              $asistentes=$producto['asistentes'];
+              $categoria=$producto['categoria'];
+              $tipoevento=$producto['idtipoevento'];
+          }
           ?>
           <div class="modal-body text-center">
-            <h5 class="text-center ">Evento <?php $tipoevento=$_SESSION['evento'][0]['tipoevento'];
+            <h5 class="text-center ">Evento <?php 
             $consulta = mysqli_query($conexion, "SELECT * FROM tipoevento WHERE idtipoevento=$tipoevento");
             while($mostrar=mysqli_fetch_array($consulta)){
               echo $mostrar['nombre'].' '.$mostrar['categoria'];
             ?></h5>
-            <p class="text-secondary"><img src="../../img/loading3.gif" width="20%" alt=""> En proceso <a href="Contratar.php" class="btn btn-secondary ml-5"><i class="fas fa-arrow-right"></i></a></p>
+            <p class="text-secondary"><img src="../../img/loading3.gif" width="20%" alt=""> En proceso <a href="Contratar.php?pagina=contratar" class="btn btn-secondary ml-5"><i class="fas fa-arrow-right"></i></a></p>
             <hr>
             <p class="text-muted">No tienes ningun evento</p>
           </div>
@@ -141,6 +151,11 @@ require '../../Config/Conexion.php';
           <?php
             }
           }
+        }else{
+          ?>
+          <h1>Funciona</h1>
+          <?php
+        }
           ?>
         </div>
       </div>
