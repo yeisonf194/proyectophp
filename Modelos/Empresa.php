@@ -21,13 +21,13 @@ switch ($_GET["op"]) {
         $nombre=$_POST["nombre"];
         $especificaciones=$_POST["especificaciones"];
         $precio=$_POST["precio"];
+        $imagen=$_POST["imagen"];
         $empresa=$_SESSION["tipo"];
         $idempresa=$_SESSION["idempresa"];
-
         switch($empresa){
             case 'Animacion':
-                $insertar="INSERT INTO animacion(nombre, idempresa, especificaciones, precio, condicion) 
-                            VALUES ('$nombre', $idempresa, '$especificaciones', $precio, 1)";
+                $insertar="INSERT INTO animacion(nombre, idempresa, especificaciones, precio, condicion, imagen) 
+                            VALUES ('$nombre', $idempresa, '$especificaciones', $precio, 1, '$imagen')";
 
 
                 $verificarServicio=mysqli_query($conexion, "SELECT * FROM animacion WHERE nombre='$nombre'");
@@ -38,8 +38,9 @@ switch ($_GET["op"]) {
                 }
             break;
             case 'Fotografia':
-                $insertar="INSERT INTO fotografia(nombre, idempresa, especificaciones, precio, condicion) 
-                            VALUES ('$nombre', $idempresa, '$especificaciones', $precio, 1)";
+            echo 'entro';
+                $insertar="INSERT INTO fotografia(nombre, idempresa, especificaciones, precio, condicion, imagen) 
+                            VALUES ('$nombre', $idempresa, '$especificaciones', $precio, 1, '$imagen')";
 
 
                 $verificarServicio=mysqli_query($conexion, "SELECT * FROM fotografia WHERE nombre='$nombre'");
@@ -50,8 +51,8 @@ switch ($_GET["op"]) {
                 }
             break;
             case 'Club':
-                $insertar="INSERT INTO salon(nombre, idempresa, capacidad, precio, condicion) 
-                            VALUES ('$nombre', $idempresa, $especificaciones, $precio, 1)";
+                $insertar="INSERT INTO salon(nombre, idempresa, capacidad, precio, condicion, imagen) 
+                            VALUES ('$nombre', $idempresa, $especificaciones, $precio, 1, '$imagen')";
 
 
                 $verificarServicio=mysqli_query($conexion, "SELECT * FROM salon WHERE nombre='$nombre'");
@@ -62,8 +63,7 @@ switch ($_GET["op"]) {
                 }
             break;
             case 'Restaurante':
-                $insertar="INSERT INTO producto(idempresa,nombre, especificaciones, precio, condicion) 
-                                        VALUES (2, $nombre, $especificaciones, $precio, 1)";
+                $insertar="INSERT INTO producto(idempresa,nombre, especificaciones, precio, condicion, imagen) VALUES ($idempresa, '$nombre', '$especificaciones', $precio, 1, '$imagen')";
 
 
                 $verificarServicio=mysqli_query($conexion, "SELECT * FROM producto WHERE nombre='$nombre'");
@@ -74,8 +74,8 @@ switch ($_GET["op"]) {
                 }
             break;
             case 'Licor':
-            $insertar="INSERT INTO producto(idempresa,nombre, especificaciones, precio, condicion) 
-            VALUES ($idempresa, $nombre, '$especificaciones', $precio, 1)";
+            $insertar="INSERT INTO producto(idempresa,nombre, especificaciones, precio, condicion, imagen) 
+            VALUES ($idempresa, '$nombre', '$especificaciones', $precio, 1, '$imagen')";
 
 
                 $verificarServicio=mysqli_query($conexion, "SELECT * FROM producto WHERE nombre='$nombre'");
@@ -84,7 +84,7 @@ switch ($_GET["op"]) {
                 }else{
                     $resultado = mysqli_query($conexion, $insertar);
                 }
-            break;
+            break;  
         }
         if (!$resultado){
             echo "<script>alert('Error');window.location= '../vistas/Empresa/Producto.php?opcion=activo'</script>";
@@ -102,28 +102,32 @@ switch ($_GET["op"]) {
                     $nombre=$_POST["nombre"];
                     $especificaciones=$_POST["especificaciones"];
                     $precio=$_POST["precio"];
-                    $edit="UPDATE fotografia SET nombre = '$nombre', especificaciones = '$especificaciones', precio = $precio WHERE idfotografia = $producto  AND idempresa = $idempresa";
+                    $imagen=$_POST["imagen"];
+                    $edit="UPDATE fotografia SET nombre = '$nombre', especificaciones = '$especificaciones', precio = $precio,imagen='$imagen' WHERE idfotografia = $producto  AND idempresa = $idempresa";
                     $editar = mysqli_query($conexion, $edit);
                 break;
                 case 'Club':
                     $nombre=$_POST["nombre"];
                     $especificaciones=$_POST["especificaciones"];
                     $precio=$_POST["precio"];
-                    $edit="UPDATE salon SET nombre = '$nombre', especificaciones = '$especificaciones', precio = '$precio' WHERE idsalon = '$producto'  AND idempresa = $idempresa";
+                    $imagen=$_POST["imagen"];
+                    $edit="UPDATE salon SET nombre = '$nombre', especificaciones = '$especificaciones', precio = $precio , imagen='$imagen' WHERE idsalon = '$producto'  AND idempresa = $idempresa";
                     $editar = mysqli_query($conexion, $edit);
                 break;
                 case 'Animacion':
                     $nombre=$_POST["nombre"];
                     $especificaciones=$_POST["especificaciones"];
                     $precio=$_POST["precio"];
-                    $edit="UPDATE animacion SET nombre = '$nombre', especificaciones = '$especificaciones', precio = '$precio' WHERE idanimacion = '$producto'  AND idempresa = $idempresa";
+                    $imagen=$_POST["imagen"];
+                    $edit="UPDATE animacion SET nombre = '$nombre', especificaciones = '$especificaciones', precio = $precio ,imagen='$imagen'WHERE idanimacion = '$producto'  AND idempresa = $idempresa";
                     $editar = mysqli_query($conexion, $edit);
                 break;
                 default:
                     $nombre=$_POST["nombre"];
                     $especificaciones=$_POST["especificaciones"];
                     $precio=$_POST["precio"];
-                    $edit="UPDATE producto SET nombre = '$nombre', especificaciones = '$especificaciones', precio = '$precio' WHERE idproducto = '$producto'  AND idempresa = $idempresa";
+                    $imagen=$_POST["imagen"];
+                    $edit="UPDATE producto SET nombre = '$nombre', especificaciones = '$especificaciones', precio = $precio ,imagen='$imagen' WHERE idproducto = '$producto'  AND idempresa = $idempresa";
                     $editar = mysqli_query($conexion, $edit);
                 break;
             }

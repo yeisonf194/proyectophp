@@ -113,17 +113,10 @@ require '../../Config/Conexion.php';
           <?php
           $idusuario=$_SESSION['idusuario'];
           $consulta=mysqli_query($conexion,"SELECT e.idevento as idevento FROM evento e, usuario u WHERE u.idusuario=$idusuario AND u.idusuario=e.idusuario");
-          if(empty($consulta)){
-          if(!isset($_SESSION['eventos'])){
+          // if(empty($consulta)){
+          if(empty($_SESSION['eventos'])){
           ?>
-            <div class="modal-body text-center">
-            <h5 class="text-center">Aun no tienes Eventos</h5><br>
-            <a data-toggle="modal" data-target="#agregarevento" class="btn btn-primary text-white"><i class="fas fa-plus"></i> Agregar Evento</a>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          </div>
+            
           <?php
           }else{
             foreach($_SESSION['evento'] as $indice=>$producto){
@@ -142,21 +135,38 @@ require '../../Config/Conexion.php';
             ?></h5>
             <p class="text-secondary"><img src="../../img/loading3.gif" width="20%" alt=""> En proceso <a href="Contratar.php?pagina=contratar" class="btn btn-secondary ml-5"><i class="fas fa-arrow-right"></i></a></p>
             <hr>
-            <p class="text-muted">No tienes ningun evento</p>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
           </div>
           <?php
             }
           }
-        }else{
+          $idusuario=$_SESSION['idusuario'];
+          $consulta=mysqli_query($conexion,"SELECT e.idevento as idevento FROM evento e, usuario u WHERE u.idusuario=$idusuario AND u.idusuario=e.idusuario");
+          if(!$consulta){
+            ?>
+            <div class="modal-body text-center">
+            <h5 class="text-center">Aun no tienes Eventos</h5><br>
+          </div>
+            <?php
+          }else{
+            $consulta=mysqli_query($conexion,"SELECT t.nombre as nombre, t.categoria as categoria FROM evento e, usuario u, tipoevento t WHERE u.idusuario=$idusuario AND u.idusuario=e.idusuario AND e.idtipoevento=t.idtipoevento");
+            while($mostrar=mysqli_fetch_array($consulta)){
+            ?>
+            <p class="text-center text-muted">Contratados</p>
+            <h6 class="text-center">Evento <?php echo $mostrar['nombre'].' '.$mostrar['categoria']?></h6>
+             
+            <?php
+            }
+          }
           ?>
-          <h1>Funciona</h1>
-          <?php
-        }
-          ?>
+          <div class="row justify-content-center">
+          <div class="col-3 text-center mt-3">
+              <a data-toggle="modal" data-target="#agregarevento" class="btn btn-primary text-white">Nuevo</a>
+            </div>
+          <div class="col-3 modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -340,7 +350,6 @@ require '../../Config/Conexion.php';
                   </div>
                   <div>
                     <div class="small text-gray-500">December 2, 2019</div>
-                    PUTTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>

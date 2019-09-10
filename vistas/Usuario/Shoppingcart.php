@@ -19,7 +19,7 @@ include '../../Modelos/Shoppingcart.php';
     <h1 class="text-center my-5">Ups...</h1>
     <h4 class="text-center"><i class="fas fa-heart-broken"></i> Aun no has contratado ningun servicio</h4><br><br>
     <p class="text-center">
-      <a class="btn btn-primary" href="Contratar.php">Catalogo</a>
+      <a class="btn btn-primary" href="Contratar.php?pagina=contratar">Catalogo</a>
     </p><br><br><br><br><br>
     <?php
     }else{
@@ -42,11 +42,11 @@ include '../../Modelos/Shoppingcart.php';
           <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
             <thead>
               <tr>
-                <th style="padding: 20px; width: 200px; text-align: center">Producto</th>
-                <th style="padding: 20px; width: 200px; text-align: center">Especificaciones</th>
-                <th style="padding: 20px; width: 200px; text-align: center">Precio Unidad</th>
-                <th style="padding: 20px; width: 200px; text-align: center">Precio Total</th>
-                <th style="padding: 20px; width: 300px; text-align: center"></th>
+                <th style="padding: 20px; width: 150px; text-align: center">Producto</th>
+                <th style="padding: 20px; width: 300px; text-align: center">Nombre</th>
+                <th style="padding: 20px; width: 100px; text-align: center">Precio Unidad</th>
+                <th style="padding: 20px; width: 150px; text-align: center">Precio Total</th>
+                <th style="padding: 20px; width: 200px; text-align: center"></th>
               </tr>
             </thead>
             <tbody>
@@ -56,8 +56,8 @@ include '../../Modelos/Shoppingcart.php';
               foreach($_SESSION['carrito'] as $indice=>$producto){
             ?>
             <tr>  
+              <td style="padding: 10px; text-align: center"><img src="../../productos/<?php echo $producto['imagen'] ?>" alt="" width="60%"></td>
               <td style="padding: 10px; text-align: center"><?php echo $producto['nombre'] ?></td>
-              <td style="padding: 10px; text-align: center"><?php echo $producto['especificaciones'] ?></td>
               <td style="padding: 10px; text-align: center"><?php echo $producto['precio'] ?></td>
               <td style="padding: 10px; text-align: center"><?php 
               if($producto['idempresa']==2 || $producto['idempresa']==3){
@@ -92,14 +92,13 @@ include '../../Modelos/Shoppingcart.php';
             </tbody>
           </table><br><br>
           <div class="row">
-              <div class="col text-center"><a href="Contratar.php?pagina=contratar" class="btn btn-primary">Agregar Producto</a></div>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalQuickView">Siguiente</button>
-          </div><br><br>
-        </div>
-        
-<!-- Modal: modalQuickView -->
-<div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<?php
+              <div class="col text-center"><a href="Contratar.php?pagina=contratar" class="btn btn-primary">Agregar Producto</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#facturacion">Siguiente</button>
+          </div>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="facturacion" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+              <?php
 foreach($_SESSION['evento'] as $indice=>$producto){
   $evento=$producto['tipoevento'];
   $entrega=$producto['fechaentrega'];
@@ -112,6 +111,10 @@ foreach($_SESSION['eventos'] as $indice=>$producto){
   $entrega=$producto['fechaentrega'];
   $asistentes=$producto['asistentes'];
 }
+$rand = range(10, 99);
+shuffle($rand);
+foreach ($rand as $val) {
+}
 $idusuario=$_SESSION['idusuario'];
 $resul=$conexion->query("SELECT nombre, apellido, documento FROM usuario WHERE idusuario=$idusuario");
 $key=$resul->fetch_assoc();
@@ -122,7 +125,7 @@ $nombreusuario=$nombre. $apellido;
 ini_set('date.time','America/Bogota');
 $facturacion = date('Y-m-d', time());
 $fechareserva = date('Ymd', time());
-$codigofactura=$fechareserva.$tipoevento.$idusuario;
+$codigofactura=$fechareserva.$tipoevento.$idusuario.$val;
 ?>
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -141,7 +144,7 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario;
 					<hr>
                     <div class="row">
                         <div class="col-4"><p>Nombre: <?php echo $nombreusuario?></p></div>
-                        <div class="col-4"><p>Fecha factura: <?php echo $facturacion?></p></div>
+                        <div class="col-4"><p>Fecha factura: <?php echo $fechareserva?></p></div>
                         <div class="col-4"><p><img src="../../js/barcode.php?text=EV<?php echo $codigofactura?>&size=30&orientation=horizontal&codetype=Code39" alt=""></p></div>
                     </div> <!-- row -->
                     <br>
@@ -164,7 +167,7 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario;
 					  <tr>
 						<th class="">Producto</th>
 						<th class="">Nombre</th>
-						<th class="">Detalles</th>
+						<th class="">Empresa</th>
 						<th class="">Cantidad</th>
 						<th class="">Precio</th>
 						<th class="">Total</th>
@@ -174,11 +177,16 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario;
           <?php
           $contador=1;
           foreach($_SESSION['carrito'] as $indice=>$producto){
+            $idproducto=$producto['idservicio'];
+            $resul=$conexion->query("SELECT e.nombre as nombre FROM empresa e, producto p WHERE p.idempresa=e.idempresa AND idproducto=$idproducto");
+            $key=$resul->fetch_assoc();
+            $empresa=$key["nombre"];
           ?>
+
 					  <tr>
 						<td class=""><?php echo $contador?></td>
 						<td class=""><?php echo $producto['nombre']?></td>
-						<td class=""><?php echo $producto['especificaciones']?></td>
+						<td class=""><?php echo $empresa?></td>
             <td class=""><?php 
               if($producto['idempresa']==2 || $producto['idempresa']==3){
                 if($producto['idempresa']==2){
@@ -210,10 +218,15 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario;
           }
             ?>
 					  </tr>
+            <tr>  
+              <td colspan="5" align="ridht" style="padding: 10px; text-align: center"><h5>Total</h5></td>
+              <td align="right" style="padding: 10px; text-align: center"><h5><?php echo $total?></h5></td>
+            </tr>
 					</tbody>
 				  </table>
 				</div> <!-- panel body --> 
         </div>
+        <form action="../../Modelos/Usuario.php?op=contratando" method="POST">
         <div class="row">
           <div class="col-12 my-3 p-5 text-center"><input type="checkbox" required> Yo <?php echo $nombreusuario?> con cedula No. <?php echo $cedula ?> indico aceptar los terminos y condiciones de EventosGuatoc por motivo de contratacion de <?php echo $contador-1?>
           servicios para el Evento tipo <?php echo $evento.' '.$categoria?> por un total de $<?php echo $total?>. Evento programado para el dia <?php echo $entrega?> con un total de 
@@ -221,17 +234,23 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario;
         </div>
       </div>
       <div class="col text-center">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <a href="../../Modelos/Usuario.php?op=contratando" class="btn btn-danger">Finalizar</a>
+      
+      
+        <input type="hidden" value="<?php echo $codigofactura?>" name="codigo">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-danger">Finalizar</button>
+      
       </div>
+      </form>
     </div>
   </div>
 </div>
-    </div>
-
-        <!-- container -->
-
+              </div>
+              
+          </div><br><br>
+        </div>
     </article>
+
     <?php
     }
     ?>

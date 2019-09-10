@@ -23,6 +23,12 @@ if(isset($_POST['btnAccion'])){
       }else{
         $mensaje.="Ups...nombre incorrecto</br>";
       }
+      if(is_string(openssl_decrypt($_POST['imagen'], COD, KEY))){
+        $imagen=openssl_decrypt($_POST['imagen'], COD, KEY);
+        $mensaje.="Ok nombre correcto</br>";
+      }else{
+        $mensaje.="Ups...nombre incorrecto</br>";
+      }
       if(is_string(openssl_decrypt($_POST['especificaciones'], COD, KEY))){
         $especificaciones=openssl_decrypt($_POST['especificaciones'], COD, KEY);
         $mensaje.="Ok especificaciones correcto</br>";
@@ -38,19 +44,19 @@ if(isset($_POST['btnAccion'])){
       if(!isset($_SESSION['carrito'])){
         $producto=array(
           'idservicio'=>$idservicio,
+          'imagen'=>$imagen,
           'idempresa'=>$idempresa,
           'nombre'=>$nombre,
-          'especificaciones'=>$especificaciones,
           'precio'=>$precio
         );
         $_SESSION['carrito'][0]=$producto;
       }else{
         $numeroProductos=count($_SESSION['carrito']);
         $producto=array(
-          'idempresa'=>$idempresa,
           'idservicio'=>$idservicio,
+          'imagen'=>$imagen,
+          'idempresa'=>$idempresa,
           'nombre'=>$nombre,
-          'especificaciones'=>$especificaciones,
           'precio'=>$precio
         ); 
         $_SESSION['carrito'][$numeroProductos]=$producto;

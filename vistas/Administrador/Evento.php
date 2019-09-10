@@ -29,7 +29,7 @@ require '../../Config/Conexion.php';
                     ?>
                         <tr>
                             <form action="../../Modelos/Admin.php?op=condicion" method="POST">
-                                <td style="padding: 10px; text-align: center"><img src="../../img/<?php echo $mostrar['imagen'] ?>" alt="<?php echo $mostrar['nombre']?>" width="50%"></td>
+                                <td style="padding: 10px; text-align: center"><img src="../../productos/<?php echo $mostrar['imagen'] ?>" alt="<?php echo $mostrar['nombre']?>" width="50%"></td>
                                 <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
                                 <td style="padding: 10px; text-align: center"><?php echo $mostrar['categoria'] ?></td>
                                 <td style="padding: 10px; text-align: center">
@@ -82,7 +82,7 @@ require '../../Config/Conexion.php';
                                                 <!--Body-->
                                                 <form action="../../Modelos/Admin.php?op=editarEvento" method="POST">
                                                     <div class="row modal-body">
-                                                        <div class="col-12 text-center mb-5"><h3><?php echo $mostrar['nombre'] ?></h3><img src="../../img/<?php echo $mostrar['imagen']?>" width="70%" alt=""></div>
+                                                        <div class="col-12 text-center mb-5"><h3><?php echo $mostrar['nombre'] ?></h3><img src="../../productos/<?php echo $mostrar['imagen']?>" width="70%" alt=""></div>
                                                         <div class="col-4 text-center"><hr><h5 class="text-muted">Nombre</h5></div>
                                                         <div class="col-8"><hr><input type="text" value="<?php echo $mostrar['nombre'] ?>" name="nombre" style="border-radius:5px; color:#424141; width: 90%"></div>
                                                         <div class="col-4 text-center"><hr><h5 class="text-muted">Detalles</h5></div>

@@ -56,6 +56,7 @@ switch ($_GET["op"]) {
         echo $fechareserva;
     break;
     case 'contratando':
+        $codigobarras=$_POST["codigo"];
         $idrestaurante=0;
         $idlicor=0;
         $idfotografia=0;
@@ -134,7 +135,7 @@ switch ($_GET["op"]) {
             $opcionservicio=1;
         }
         $tbevento=mysqli_query($conexion,"INSERT INTO evento(idusuario, idtipoevento, fechareserva, fechaentregahora, cantidadpersonas, precio, abono, saldo, codigo)
-                                            VALUES ('$idusuario', '$tipoevento', '$fechareserva', '$entrega', $asistentes, $total, 0, 0, 0)");
+                                            VALUES ('$idusuario', '$tipoevento', '$fechareserva', '$entrega', $asistentes, $total, 0, 0, 'EV$codigobarras')");
 
                                             
         $resul=$conexion->query("SELECT idevento as evento, fechareserva as fechareserva FROM evento WHERE fechareserva='$fechareserva' ");

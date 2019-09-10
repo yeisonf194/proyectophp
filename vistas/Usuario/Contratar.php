@@ -62,19 +62,19 @@ include '../../Modelos/Shoppingcart.php'
    <article class="row justify-content-center my-5">
      <div class="col-12 mb-5"><h1 class="text-center">Restaurante</h1></div>
       <?php
-        $resultado = mysqli_query($conexion, 'SELECT s.idproducto as idservicio, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa FROM producto s, empresa e WHERE s.idempresa=2 AND s.idempresa=e.idempresa AND condicion=1');
+        $resultado = mysqli_query($conexion, 'SELECT s.idproducto as idservicio, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa, s.imagen as imagen FROM producto s, empresa e WHERE s.idempresa=2 AND s.idempresa=e.idempresa AND condicion=1');
         while($mostrar=mysqli_fetch_array($resultado)){
       ?>
       <div class="col-sm-12 col-lg-3">
           <div class="card border-ligth m-4" style="width:90%">
-            <img class="card-img-top" src="../../img/boda1.jpg"  alt="">
-            <div class="card-body">
+            <img class="card-img-top" src="../../productos/<?php echo $mostrar['imagen'] ?>"  alt="">
+            <div class="card-body" height="500px">
               <h4 class="card-title"><?php echo $mostrar['nombre'] ?></h4>
               <p>Precio: $<?php echo $mostrar['precio']?></p>
               <a data-toggle="modal" href="#servicios<?php echo $mostrar['idservicio']?>" class="btn btn-primary">Ver</a>
             </div>
           </div>
-          </div>
+      </div>
 
           <!-- Modal -->
             <div class="portfolio-modal modal fade" id="servicios<?php echo $mostrar['idservicio']?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -91,15 +91,15 @@ include '../../Modelos/Shoppingcart.php'
                         <div class="modal-body">
                           <!-- Project Details Go Here -->
                           <h2 class="text-uppercase"><?php echo $mostrar['nombre'] ?></h2>
-                          <p class="item-intro text-muted"><?php echo $mostrar['especificaciones'] ?></p>
-                          <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
-                          <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                          <img class="img-fluid d-block mx-auto" src="../../productos/<?php echo $mostrar['imagen'] ?>" alt="">
+                          <p class="item-intro"><?php echo $mostrar['especificaciones'] ?></p>
                           <ul class="list-inline">
                             <li>Empresa: <?php echo $mostrar['empresa'] ?></li>
                             <li>Precio por plato: $<?php echo $mostrar['precio'] ?></li>
                             <li>Categoria: <?php echo $mostrar['tipo'] ?></li>
                           </ul>
                           <form action="" method="POST">
+                            <input type="hidden" name="imagen" id="imagen" value="<?php echo openssl_encrypt($mostrar['imagen'],COD,KEY) ?>">
                             <input type="hidden" name="idservicio" id="idservicio" value="<?php echo openssl_encrypt($mostrar['idservicio'],COD,KEY) ?>">
                             <input type="hidden" name="idempresa" id="idempresa" value="<?php echo openssl_encrypt($mostrar['idempresa'],COD,KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($mostrar['nombre'],COD,KEY) ?>">
@@ -122,19 +122,19 @@ include '../../Modelos/Shoppingcart.php'
     <article class="row justify-content-center my-5">
         <div class="col-12 mb-5"><h1 class="text-center">Licor</h1></div>
           <?php
-            $resultado = mysqli_query($conexion, 'SELECT s.idproducto as idservicio, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa FROM producto s, empresa e WHERE s.idempresa=3 AND s.idempresa=e.idempresa');
+            $resultado = mysqli_query($conexion, 'SELECT s.idproducto as idservicio, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa, s.imagen as imagen FROM producto s, empresa e WHERE s.idempresa=3 AND s.idempresa=e.idempresa');
             while($mostrar=mysqli_fetch_array($resultado)){
           ?>
           <div class="col-sm-12 col-lg-3">
           <div class="card border-ligth m-4" style="width:90%">
-            <img class="card-img-top" src="../../img/boda1.jpg"  alt="">
-            <div class="card-body">
+            <img class="card-img-top" src="../../productos/<?php echo $mostrar['imagen'] ?>"  alt="">
+            <div class="card-body" height="500px">
               <h4 class="card-title"><?php echo $mostrar['nombre'] ?></h4>
               <p>Precio: $<?php echo $mostrar['precio']?></p>
               <a data-toggle="modal" href="#servicios<?php echo $mostrar['idservicio']?>" class="btn btn-primary">Ver</a>
             </div>
           </div>
-          </div>
+      </div>
 
           <!-- Modal -->
             <div class="portfolio-modal modal fade" id="servicios<?php echo $mostrar['idservicio']?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -151,15 +151,15 @@ include '../../Modelos/Shoppingcart.php'
                         <div class="modal-body">
                           <!-- Project Details Go Here -->
                           <h2 class="text-uppercase"><?php echo $mostrar['nombre'] ?></h2>
-                          <p class="item-intro text-muted"><?php echo $mostrar['especificaciones'] ?></p>
-                          <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
-                          <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                          <img class="img-fluid d-block mx-auto" src="../../productos/<?php echo $mostrar['imagen'] ?>" alt="">
+                          <p class="item-intro"><?php echo $mostrar['especificaciones'] ?></p>
                           <ul class="list-inline">
                             <li>Empresa: <?php echo $mostrar['empresa'] ?></li>
                             <li>Precio por plato: $<?php echo $mostrar['precio'] ?></li>
                             <li>Categoria: <?php echo $mostrar['tipo'] ?></li>
                           </ul>
                           <form action="" method="POST">
+                            <input type="hidden" name="imagen" id="imagen" value="<?php echo openssl_encrypt($mostrar['imagen'],COD,KEY) ?>">
                             <input type="hidden" name="idservicio" id="idservicio" value="<?php echo openssl_encrypt($mostrar['idservicio'],COD,KEY) ?>">
                             <input type="hidden" name="idempresa" id="idempresa" value="<?php echo openssl_encrypt($mostrar['idempresa'],COD,KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($mostrar['nombre'],COD,KEY) ?>">
@@ -186,19 +186,19 @@ include '../../Modelos/Shoppingcart.php'
     <article class="row justify-content-center my-5">
         <div class="col-12 mb-5"><h1 class="text-center">Fotografia</h1></div>
           <?php
-            $resultado = mysqli_query($conexion, 'SELECT s.idfotografia, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa FROM fotografia s, empresa e WHERE s.idempresa=e.idempresa');
+            $resultado = mysqli_query($conexion, 'SELECT s.idfotografia, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa, s.imagen as imagen FROM fotografia s, empresa e WHERE s.idempresa=e.idempresa');
             while($mostrar=mysqli_fetch_array($resultado)){
           ?>
           <div class="col-sm-12 col-lg-3">
           <div class="card border-ligth m-4" style="width:90%">
-            <img class="card-img-top" src="../../img/boda1.jpg"  alt="">
-            <div class="card-body">
+            <img class="card-img-top" src="../../productos/<?php echo $mostrar['imagen'] ?>"  alt="">
+            <div class="card-body" height="500px">
               <h4 class="card-title"><?php echo $mostrar['nombre'] ?></h4>
               <p>Precio: $<?php echo $mostrar['precio']?></p>
               <a data-toggle="modal" href="#foto<?php echo $mostrar['idfotografia']?>" class="btn btn-primary">Ver</a>
             </div>
           </div>
-          </div>
+      </div>
 
           <!-- Modal -->
             <div class="portfolio-modal modal fade" id="foto<?php echo $mostrar['idfotografia']?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -215,15 +215,15 @@ include '../../Modelos/Shoppingcart.php'
                         <div class="modal-body">
                           <!-- Project Details Go Here -->
                           <h2 class="text-uppercase"><?php echo $mostrar['nombre'] ?></h2>
-                          <p class="item-intro text-muted"><?php echo $mostrar['especificaciones'] ?></p>
-                          <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
-                          <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                          <img class="img-fluid d-block mx-auto" src="../../productos/<?php echo $mostrar['imagen'] ?>" alt="">
+                          <p class="item-intro"><?php echo $mostrar['especificaciones'] ?></p>
                           <ul class="list-inline">
                             <li>Empresa: <?php echo $mostrar['empresa'] ?></li>
                             <li>Precio por plato: $<?php echo $mostrar['precio'] ?></li>
                             <li>Categoria: <?php echo $mostrar['tipo'] ?></li>
                           </ul>
                           <form action="" method="POST">
+                            <input type="hidden" name="imagen" id="imagen" value="<?php echo openssl_encrypt($mostrar['imagen'],COD,KEY) ?>">
                             <input type="hidden" name="idservicio" id="idservicio" value="<?php echo openssl_encrypt($mostrar['idfotografia'],COD,KEY) ?>">
                             <input type="hidden" name="idempresa" id="idempresa" value="<?php echo openssl_encrypt($mostrar['idempresa'],COD,KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($mostrar['nombre'],COD,KEY) ?>">
@@ -251,19 +251,19 @@ include '../../Modelos/Shoppingcart.php'
     <article class="row justify-content-center my-5">
         <div class="col-12 mb-5"><h1 class="text-center">Salon</h1></div>
           <?php
-            $resultado = mysqli_query($conexion, 'SELECT s.idsalon, s.idempresa, s.nombre, s.capacidad as especificaciones, s.precio, e.tipo, e.nombre as empresa FROM salon s, empresa e WHERE s.idempresa=e.idempresa');
+            $resultado = mysqli_query($conexion, 'SELECT s.idsalon, s.idempresa, s.nombre, s.capacidad as especificaciones, s.precio, e.tipo, e.nombre as empresa, s.imagen as imagen FROM salon s, empresa e WHERE s.idempresa=e.idempresa');
             while($mostrar=mysqli_fetch_array($resultado)){
           ?>
           <div class="col-sm-12 col-lg-3">
           <div class="card border-ligth m-4" style="width:90%">
-            <img class="card-img-top" src="../../img/boda1.jpg"  alt="">
-            <div class="card-body">
+            <img class="card-img-top" src="../../productos/<?php echo $mostrar['imagen'] ?>"  alt="">
+            <div class="card-body" height="500px">
               <h4 class="card-title"><?php echo $mostrar['nombre'] ?></h4>
               <p>Precio: $<?php echo $mostrar['precio']?></p>
               <a data-toggle="modal" href="#salon<?php echo $mostrar['idsalon']?>" class="btn btn-primary">Ver</a>
             </div>
           </div>
-          </div>
+      </div>
 
           <!-- Modal -->
             <div class="portfolio-modal modal fade" id="salon<?php echo $mostrar['idsalon']?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -280,15 +280,15 @@ include '../../Modelos/Shoppingcart.php'
                         <div class="modal-body">
                           <!-- Project Details Go Here -->
                           <h2 class="text-uppercase"><?php echo $mostrar['nombre'] ?></h2>
-                          <p class="item-intro text-muted"><?php echo $mostrar['especificaciones'] ?></p>
-                          <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
-                          <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                          <img class="img-fluid d-block mx-auto" src="../../productos/<?php echo $mostrar['imagen'] ?>" alt="">
+                          <p class="item-intro"><?php echo $mostrar['especificaciones'] ?></p>
                           <ul class="list-inline">
                             <li>Empresa: <?php echo $mostrar['empresa'] ?></li>
                             <li>Precio por plato: $<?php echo $mostrar['precio'] ?></li>
                             <li>Categoria: <?php echo $mostrar['tipo'] ?></li>
                           </ul>
                           <form action="" method="POST">
+                            <input type="hidden" name="imagen" id="imagen" value="<?php echo openssl_encrypt($mostrar['imagen'],COD,KEY) ?>">
                             <input type="hidden" name="idservicio" id="idservicio" value="<?php echo openssl_encrypt($mostrar['idsalon'],COD,KEY) ?>">
                             <input type="hidden" name="idempresa" id="idempresa" value="<?php echo openssl_encrypt($mostrar['idempresa'],COD,KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($mostrar['nombre'],COD,KEY) ?>">
@@ -316,19 +316,19 @@ include '../../Modelos/Shoppingcart.php'
     <article class="row justify-content-center my-5">
         <div class="col-12 mb-5"><h1 class="text-center">Animacion</h1></div>
           <?php
-            $resultado = mysqli_query($conexion, 'SELECT s.idanimacion, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa FROM animacion s, empresa e WHERE s.idempresa=e.idempresa');
+            $resultado = mysqli_query($conexion, 'SELECT s.idanimacion, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa, s.imagen as imagen FROM animacion s, empresa e WHERE s.idempresa=e.idempresa');
             while($mostrar=mysqli_fetch_array($resultado)){
           ?>
           <div class="col-sm-12 col-lg-3">
           <div class="card border-ligth m-4" style="width:90%">
-            <img class="card-img-top" src="../../img/boda1.jpg"  alt="">
-            <div class="card-body">
+            <img class="card-img-top" src="../../productos/<?php echo $mostrar['imagen'] ?>"  alt="">
+            <div class="card-body" height="500px">
               <h4 class="card-title"><?php echo $mostrar['nombre'] ?></h4>
               <p>Precio: $<?php echo $mostrar['precio']?></p>
               <a data-toggle="modal" href="#anima<?php echo $mostrar['idanimacion']?>" class="btn btn-primary">Ver</a>
             </div>
           </div>
-          </div>
+      </div>
 
           <!-- Modal -->
             <div class="portfolio-modal modal fade" id="anima<?php echo $mostrar['idanimacion']?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -345,15 +345,15 @@ include '../../Modelos/Shoppingcart.php'
                         <div class="modal-body">
                           <!-- Project Details Go Here -->
                           <h2 class="text-uppercase"><?php echo $mostrar['nombre'] ?></h2>
-                          <p class="item-intro text-muted"><?php echo $mostrar['especificaciones'] ?></p>
-                          <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
-                          <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                          <img class="img-fluid d-block mx-auto" src="../../productos/<?php echo $mostrar['imagen'] ?>" alt="">
+                          <p class="item-intro"><?php echo $mostrar['especificaciones'] ?></p>
                           <ul class="list-inline">
                             <li>Empresa: <?php echo $mostrar['empresa'] ?></li>
                             <li>Precio por plato: $<?php echo $mostrar['precio'] ?></li>
                             <li>Categoria: <?php echo $mostrar['tipo'] ?></li>
                           </ul>
                           <form action="" method="POST">
+                            <input type="hidden" name="imagen" id="imagen" value="<?php echo openssl_encrypt($mostrar['imagen'],COD,KEY) ?>">
                             <input type="hidden" name="idservicio" id="idservicio" value="<?php echo openssl_encrypt($mostrar['idanimacion'],COD,KEY) ?>">
                             <input type="hidden" name="idempresa" id="idempresa" value="<?php echo openssl_encrypt($mostrar['idempresa'],COD,KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($mostrar['nombre'],COD,KEY) ?>">

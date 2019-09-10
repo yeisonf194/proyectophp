@@ -13,9 +13,10 @@ require '../../Config/Conexion.php';
             <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
                 <thead>
                     <tr>
-                        <th style="padding: 20px; width: 200px; text-align: center">Nombre</th>
-                        <th style="padding: 20px; width: 200px; text-align: center">Capacidad</th>
-                        <th style="padding: 20px; width: 200px; text-align: center">precio</th>
+                        <th style="padding: 20px; width: 200px; text-align: center">Imagen</th>
+                        <th style="padding: 20px; width: 150px; text-align: center">Nombre</th>
+                        <th style="padding: 20px; width: 300px; text-align: center">Especificaciones</th>
+                        <th style="padding: 20px; width: 150px; text-align: center">precio</th>
                         <th style="padding: 20px; width: 300px; text-align: center">Editar</th>
                     </tr>
                 </thead>
@@ -27,19 +28,19 @@ require '../../Config/Conexion.php';
                     if($_GET['opcion']=='activo'){
                         switch($idempresa){
                             case '4':
-                                $consulta="SELECT nombre, especificaciones, precio, idempresa, idfotografia as producto FROM fotografia WHERE condicion=1";
+                                $consulta="SELECT imagen, nombre, especificaciones, precio, idempresa, idfotografia as producto FROM fotografia WHERE condicion=1";
                                 $resultado=mysqli_query($conexion,$consulta);
                             break;
                             case '5':
-                                $consulta="SELECT nombre, capacidad as especificaciones, precio, idempresa, idsalon as producto FROM salon WHERE condicion=1";
+                                $consulta="SELECT imagen, nombre, capacidad as especificaciones, precio, idempresa, idsalon as producto FROM salon WHERE condicion=1";
                                 $resultado=mysqli_query($conexion,$consulta);
                             break;
                             case '6':
-                                $consulta="SELECT nombre, especificaciones, precio, idempresa, idanimacion as producto FROM animacion WHERE condicion=1";
+                                $consulta="SELECT imagen, nombre, especificaciones, precio, idempresa, idanimacion as producto FROM animacion WHERE condicion=1";
                                 $resultado=mysqli_query($conexion,$consulta);
                             break;
                             default:
-                                $consulta="SELECT nombre, especificaciones, precio, idempresa, idproducto as producto FROM producto WHERE idempresa=$idempresa AND condicion=1";
+                                $consulta="SELECT imagen, nombre, especificaciones, precio, idempresa, idproducto as producto FROM producto WHERE idempresa=$idempresa AND condicion=1";
                                 $resultado=mysqli_query($conexion,$consulta);
                             break;
                         }
@@ -50,6 +51,7 @@ require '../../Config/Conexion.php';
                     <!-- Cuerpo de la tabla -->
                     <tr> 
                         <form action="../../Modelos/Empresa.php?op=delete" method="POST">
+                        <td style="padding: 10px; text-align: center"><img src="../../productos/<?php echo $mostrar['imagen'] ?>" alt="" width="90%"></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
@@ -117,13 +119,14 @@ require '../../Config/Conexion.php';
                                 <!--Body-->
                                 <form action="../../Modelos/Empresa.php?op=editar" method="POST">
                                     <div class="row modal-body">
-                                        <div class="col-12 text-center mb-5"><h3><?php echo $mostrar['nombre'] ?></h3><img src="../../img/friends.jpg" width="70%" alt=""></div>
+                                        <div class="col-12 text-center mb-5"><h3><?php echo $mostrar['nombre'] ?></h3><img src="../../productos/<?php echo $mostrar['imagen']?>" width="90%" alt=""></div>
                                         <div class="col-4 text-center"><hr><h5 class="text-muted">Nombre</h5></div>
                                         <div class="col-8"><hr><input type="text" value="<?php echo $mostrar['nombre'] ?>" name="nombre" style="border-radius:5px; color:#424141; width: 90%"></div>
                                         <div class="col-4 text-center"><hr><h5 class="text-muted">Detalles</h5></div>
                                         <div class="col-8"><hr><input type="text" value="<?php echo $mostrar['especificaciones'] ?>" name="especificaciones" style="border-radius:5px; color:#424141; width: 90%"></div>
                                         <div class="col-4 text-center"><hr><h5 class="text-muted">Precio</h5></div>
                                         <div class="col-8 mb-5"><hr><input type="text" value="<?php echo $mostrar['precio'] ?>" name="precio" style="border-radius:5px; color:#424141; width: 90%"></div>
+                                        <div class="col-8 mb-5"><hr><input type="file" value="<?php echo $mostrar['imagen'] ?>" name="imagen" style="border-radius:5px; color:#424141; width: 90%"></div>
                                         <input type="hidden" name="producto" value="<?php echo openssl_encrypt($mostrar['producto'],COD,KEY) ?>">
                                         <div class="col-12 text-right"><button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cerrar</button><button type="submit" class="btn btn-danger">Guardar</button></div>
                                     </div>
@@ -136,19 +139,19 @@ require '../../Config/Conexion.php';
                     }else{
                         switch($idempresa){
                             case '4':
-                                $consulta="SELECT nombre, especificaciones, precio, idempresa, idfotografia as producto FROM fotografia WHERE condicion=0";
+                                $consulta="SELECT imagen, nombre, especificaciones, precio, idempresa, idfotografia as producto FROM fotografia WHERE condicion=0";
                                 $resultado=mysqli_query($conexion,$consulta);
                             break;
                             case '5':
-                                $consulta="SELECT nombre, capacidad as especificaciones, precio, idempresa, idsalon as producto FROM salon WHERE condicion=0";
+                                $consulta="SELECT imagen, nombre, capacidad as especificaciones, precio, idempresa, idsalon as producto FROM salon WHERE condicion=0";
                                 $resultado=mysqli_query($conexion,$consulta);
                             break;
                             case '6':
-                                $consulta="SELECT nombre, especificaciones, precio, idempresa, idanimacion as producto FROM animacion WHERE condicion=0";
+                                $consulta="SELECT imagen, nombre, especificaciones, precio, idempresa, idanimacion as producto FROM animacion WHERE condicion=0";
                                 $resultado=mysqli_query($conexion,$consulta);
                             break;
                             default:
-                                $consulta="SELECT nombre, especificaciones, precio, idempresa, idproducto as producto FROM producto WHERE idempresa=$idempresa AND condicion=0";
+                                $consulta="SELECT imagen, nombre, especificaciones, precio, idempresa, idproducto as producto FROM producto WHERE idempresa=$idempresa AND condicion=0";
                                 $resultado=mysqli_query($conexion,$consulta);
                             break;
                         }
@@ -159,6 +162,7 @@ require '../../Config/Conexion.php';
                     <!-- Cuerpo de la tabla -->
                     <tr> 
                         <form action="../../Modelos/Empresa.php?op=delete" method="POST">
+                            <td style="padding: 10px; text-align: center"><img src="../../productos/<?php echo $mostrar['imagen'] ?>" width="90%" alt=""></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
@@ -184,7 +188,7 @@ require '../../Config/Conexion.php';
                                             $activador=$consulta["condicion"];
                                         break;
                                         default:
-                                            $consultando=$conexion->query("SELECT condicion as condicion FROM producto WHERE ='$producto' AND idempresa='$idempresa' ");
+                                            $consultando=$conexion->query("SELECT condicion as condicion FROM producto WHERE idproducto='$producto' AND idempresa='$idempresa' ");
                                             $consulta=$consultando->fetch_assoc();
                                             $activador=$consulta["condicion"];
                                         break;
@@ -212,31 +216,6 @@ require '../../Config/Conexion.php';
                                     <div class="col-4 text-center"><hr><h5 class="text-muted">Precio</h5></div>
                                     <div class="col-8"><hr><p style="font-size:18px">$<?php echo $mostrar['precio'] ?></p></div>
                                 </div>  
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal edit -->
-                    <div class="modal fade" id="edit<?php echo $mostrar['idempresa'].$producto?>">
-                        <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <p class="heading lead">Editar</p>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="white-text">×</span></button>
-                                </div>
-                                <!--Body-->
-                                <form action="../../Modelos/Empresa.php?op=editar" method="POST">
-                                    <div class="row modal-body">
-                                        <div class="col-12 text-center mb-5"><h3><?php echo $mostrar['nombre'] ?></h3><img src="../../img/friends.jpg" width="70%" alt=""></div>
-                                        <div class="col-4 text-center"><hr><h5 class="text-muted">Nombre</h5></div>
-                                        <div class="col-8"><hr><input type="text" value="<?php echo $mostrar['nombre'] ?>" name="nombre" style="border-radius:5px; color:#424141; width: 90%"></div>
-                                        <div class="col-4 text-center"><hr><h5 class="text-muted">Detalles</h5></div>
-                                        <div class="col-8"><hr><input type="text" value="<?php echo $mostrar['especificaciones'] ?>" name="especificaciones" style="border-radius:5px; color:#424141; width: 90%"></div>
-                                        <div class="col-4 text-center"><hr><h5 class="text-muted">Precio</h5></div>
-                                        <div class="col-8 mb-5"><hr><input type="text" value="<?php echo $mostrar['precio'] ?>" name="precio" style="border-radius:5px; color:#424141; width: 90%"></div>
-                                        <input type="hidden" name="producto" value="<?php echo openssl_encrypt($mostrar['producto'],COD,KEY) ?>">
-                                        <div class="col-12 text-right"><button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cerrar</button><button type="submit" class="btn btn-danger">Guardar</button></div>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -274,6 +253,10 @@ require '../../Config/Conexion.php';
                                         <div class="col-6 pl-5">
                                             <label for="name">Precio</label>
                                             <input type="text" name="precio" style="border-radius:5px; color:#424141; width: 100%" required>
+                                        </div>
+                                        <div class="col-12 mb-5">
+                                            <label for="name">Imagen</label>
+                                            <input type="file" name="imagen" required>
                                         </div>
                                         <div class="col-6 text-center">
                                             <p><button type="submit" class="btn btn-danger">Agregar</button></p>

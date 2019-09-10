@@ -77,7 +77,7 @@ require '../../Config/Conexion.php';
                             break;
                         }
                         ?> 
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Tiene <?php echo $conteo ?> pedidos <span class="badge badge-danger">1</span></div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Tiene <?php echo $conteo ?> pedidos</div>
                         </div>
                       </div>
                     </div>
@@ -99,16 +99,19 @@ require '../../Config/Conexion.php';
                                 case '4':
                                   $empresa='fotografia';
                                   $servicio='idfotografia';
+                                  $precio='preciofotografia';
                                   $consulta=1;
                                 break;
                                 case '5':
                                   $empresa='salon';
                                   $servicio='idsalon';
+                                  $precio='preciosalon';
                                   $consulta=1;
                                 break;
                                 case '6':
                                   $empresa='animacion';
                                   $servicio='idanimacion';
+                                  $precio='precioanimacion';
                                   $consulta=1;
                                 break;
                                 default:
@@ -118,36 +121,93 @@ require '../../Config/Conexion.php';
                                 break;
                               }
                               if($consulta==1){
-                              $resultado = mysqli_query($conexion, "SELECT	  u.nombre, u.apellido, t.nombre as evento, t.categoria, e.fechareserva, e.fechaentregahora, f.nombre as servicio 
-                              FROM	    usuario u, evento e, tipoevento t, pedido p, fotografia f, empresa em 
-                              WHERE	    e.idusuario=u.idusuario AND e.idtipoevento=t.idtipoevento AND p.idevento=e.idevento AND p.idfotografia=f.idfotografia AND f.idempresa=em.idempresa AND em.idempresa=$idempresa");
+                                $resultado = mysqli_query($conexion, "SELECT	  u.nombre, u.apellido, t.nombre as evento,e.idevento, p.$precio as precio, e.cantidadpersonas,f.imagen, t.categoria, e.fechareserva, e.fechaentregahora, f.nombre as servicio 
+                                                                      FROM	    usuario u, evento e, tipoevento t, pedido p, $empresa f, empresa em 
+                                                                      WHERE	    e.idusuario=u.idusuario AND e.idtipoevento=t.idtipoevento AND p.idevento=e.idevento AND p.$servicio=f.$servicio AND f.idempresa=em.idempresa AND em.idempresa=$idempresa");
                               while($mostrar=mysqli_fetch_array($resultado)){
                               ?>
-                              <div class="col-10 mt-5">
-                                <h6><?php echo $mostrar['nombre'].' '.$mostrar['apellido'] ?></h6>
-                                <p>Ha contratado el servicio <b><?php echo $mostrar['servicio']?></b> para el evento tipo <?php echo $mostrar['evento'].' '.$mostrar['categoria'] ?></p>
-                                <p class="text-right"><span class="text-muted"><?php echo $mostrar['fechareserva']?></p><hr>
-                              </div>
-                              <div class="col-2 mt-5 text-right">
-                                <p class="text-muted">Detalles</p>
-                                <p><a class="btn btn-secondary" href="#"><i class="fas fa-plus"></i></a></p>
+                              <div id="accordianId" role="tablist" aria-multiselectable="true" style="width:100%">
+                                <div class="card mb-5">
+                                  <div class="card-header" role="tab" id="section1HeaderId">
+                                    <div class="row">
+                                      <div class="col-10 mt-5">
+                                        <h6><?php echo $mostrar['nombre'].' '.$mostrar['apellido'] ?></h6>
+                                        <p>Ha contratado el servicio <b><?php echo $mostrar['servicio']?></b> para el evento tipo <?php echo $mostrar['evento'].' '.$mostrar['categoria'] ?></p>
+                                      </div>
+                                      <div class="col-2 mt-5 text-right">
+                                        <p class="text-muted">Detalles</p>
+                                        <p><a class="btn btn-secondary" data-toggle="collapse" data-parent="#accordianId" href="#evento<?php echo $mostrar['idevento']?>" aria-expanded="true" aria-controls="section1ContentId"><i class="fas fa-plus"></i></a></p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div id="evento<?php echo $mostrar['idevento']?>" class="collapse in" role="tabpanel" aria-labelledby="evento<?php echo $mostrar['idevento']?>">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        <div class="col-4">Producto:</div>
+                                        <div class="col-8"><img src="../../productos/<?php echo $mostrar['imagen']?>" width="70%" alt=""><hr></div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-4">Fecha Realizacion:</div>
+                                        <div class="col-8"><?php echo $mostrar['fechaentregahora']?><hr></div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-4">Asistentes:</div>
+                                        <div class="col-8"><?php echo $mostrar['cantidadpersonas']?><hr></div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-4"><h6>Total:</h6></div>
+                                        <div class="col-8"><h6><?php echo $mostrar['precio']?></h6><hr></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <p class="text-right"><span class="text-muted mr-3"><?php echo $mostrar['fechareserva']?></p>
+                                </div>  
                               </div>
                             <?php
                                 }
                               }else{
-                                $resultado = mysqli_query($conexion, "SELECT	  u.nombre, u.apellido, t.nombre as evento, t.categoria, e.fechareserva, e.fechaentregahora, pro.nombre as servicio 
+                                $resultado = mysqli_query($conexion, "SELECT	  u.nombre, u.apellido, t.nombre as evento, t.categoria, e.cantidadpersonas, e.fechareserva, e.idevento as idevento, e.fechaentregahora, e.precio, pro.nombre as servicio, pro.imagen
                                                                       FROM	    usuario u, evento e, tipoevento t, pedido p, servicio s, empresa em, producto pro
                                                                       WHERE	    e.idusuario=u.idusuario AND e.idtipoevento=t.idtipoevento AND p.idevento=e.idevento AND p.idpedido=s.idpedido AND s.idempresa=em.idempresa AND em.idempresa=pro.idempresa AND pro.idproducto=s.idproducto AND em.idempresa=$idempresa");
                                 while($mostrar=mysqli_fetch_array($resultado)){
                               ?>
-                              <div class="col-10 mt-5">
-                                <h6><?php echo $mostrar['nombre'].' '.$mostrar['apellido'] ?></h6>
-                                <p>Ha contratado el servicio <b><?php echo $mostrar['servicio']?></b> para el evento tipo <?php echo $mostrar['evento'].' '.$mostrar['categoria'] ?></p>
-                                <p class="text-right"><span class="text-muted"><?php echo $mostrar['fechareserva']?></p><hr>
-                              </div>
-                              <div class="col-2 mt-5 text-right">
-                                <p class="text-muted">Detalles</p>
-                                <p><a class="btn btn-secondary" href="#"><i class="fas fa-plus"></i></a></p>
+                              
+                              <div id="accordianId" role="tablist" aria-multiselectable="true" style="width:100%">
+                                <div class="card mb-5">
+                                  <div class="card-header" role="tab" id="section1HeaderId">
+                                    <div class="row">
+                                      <div class="col-10 mt-5">
+                                        <h6><?php echo $mostrar['nombre'].' '.$mostrar['apellido'] ?></h6>
+                                        <p>Ha contratado el servicio <b><?php echo $mostrar['servicio']?></b> para el evento tipo <?php echo $mostrar['evento'].' '.$mostrar['categoria'] ?></p>
+                                      </div>
+                                      <div class="col-2 mt-5 text-right">
+                                        <p class="text-muted">Detalles</p>
+                                        <p><a class="btn btn-secondary" data-toggle="collapse" data-parent="#accordianId" href="#evento<?php echo $mostrar['idevento']?>" aria-expanded="true" aria-controls="section1ContentId"><i class="fas fa-plus"></i></a></p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div id="evento<?php echo $mostrar['idevento']?>" class="collapse in" role="tabpanel" aria-labelledby="evento<?php echo $mostrar['idevento']?>">
+                                    <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-4">Producto:</div>
+                                        <div class="col-8"><img src="../../productos/<?php echo $mostrar['imagen']?>" width="70%" alt=""><hr></div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-4">Fecha Realizacion:</div>
+                                        <div class="col-8"><?php echo $mostrar['fechaentregahora']?><hr></div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-4">Asistentes:</div>
+                                        <div class="col-8"><?php echo $mostrar['cantidadpersonas']?><hr></div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-4"><h6>Total:</h6></div>
+                                        <div class="col-8"><h6><?php echo $mostrar['precio']?></h6><hr></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <p class="text-right"><span class="text-muted mr-3"><?php echo $mostrar['fechareserva']?></p>
+                                </div>  
                               </div>
                             <?php
                                 }
