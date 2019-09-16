@@ -135,7 +135,7 @@ switch ($_GET["op"]) {
             $opcionservicio=1;
         }
         $tbevento=mysqli_query($conexion,"INSERT INTO evento(idusuario, idtipoevento, fechareserva, fechaentregahora, cantidadpersonas, precio, abono, saldo, codigo)
-                                            VALUES ('$idusuario', '$tipoevento', '$fechareserva', '$entrega', $asistentes, $total, 0, 0, 'EV$codigobarras')");
+                                            VALUES ('$idusuario', '$tipoevento', '$fechareserva', '$entrega', $asistentes, $total, 0, $total, 'EV$codigobarras')");
 
                                             
         $resul=$conexion->query("SELECT idevento as evento, fechareserva as fechareserva FROM evento WHERE fechareserva='$fechareserva' ");

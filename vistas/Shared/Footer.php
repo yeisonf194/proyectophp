@@ -1,5 +1,5 @@
-<div class="row">
-<footer class="col-12" style="background-color:#212529">
+<div class="row mt-5">
+<footer class="col-12 mt-5" style="background-color:#212529">
     <div class="text-center mt-5 mb-5">
       <span class="copyright text-center text-white">Copyright &copy; EventosGuatoc</span>
     </div>

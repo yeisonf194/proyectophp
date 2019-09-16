@@ -99,6 +99,145 @@ switch ($_GET["op"]) {
             echo "<script>alert('Evento Agregado');window.location= '../vistas/Administrador/Evento.php'</script>";
         }
     break;
+    case 'agregarNoticiacliente':
+        $noticia=$_POST["noticia"];
+        $condicion=$_POST["condicion"];
+        $cliente=$_POST['cliente'];
+        if($cliente==""){
+            $insertar="INSERT INTO noticias(noticia, condicion, destino) 
+                    VALUES ('$noticia', $condicion, 'cliente')";
+            $resultado = mysqli_query($conexion, $insertar);
+            if ($resultado){
+            header('Location: ../vistas/Administrador/Noticias.php?pagina=cliente');
+            }
+        }else{
+            $insertar="INSERT INTO noticias(idusuario, noticia, condicion, destino) 
+                    VALUES ($cliente, '$noticia', $condicion, 'cliente')";
+            $resultado = mysqli_query($conexion, $insertar);
+            if ($resultado){
+            header('Location: ../vistas/Administrador/Noticias.php?pagina=cliente');
+            }
+        }
+    break;
+    case 'agregarNoticiaempresa':
+        $noticia=$_POST["noticia"];
+        $condicion=$_POST["condicion"];
+        $cliente=$_POST['cliente'];
+        if($cliente==""){
+            $insertar="INSERT INTO noticias(noticia, condicion, destino) 
+                    VALUES ('$noticia', $condicion, 'empresa')";
+            $resultado = mysqli_query($conexion, $insertar);
+            if ($resultado){
+            header('Location: ../vistas/Administrador/Noticias.php?pagina=empresa');
+            }
+        }else{
+            $insertar="INSERT INTO noticias(idusuario, noticia, condicion, destino) 
+                    VALUES ($cliente, '$noticia', $condicion, 'empresa')";
+            $resultado = mysqli_query($conexion, $insertar);
+            if ($resultado){
+            header('Location: ../vistas/Administrador/Noticias.php?pagina=empresa');
+            }
+        }
+    break;
+    case 'editarNoticiacliente':
+        $idnoticia=$_POST['idnoticia'];
+        $noticia=$_POST["noticia"];
+        $condicion=$_POST["condicion"];
+        $cliente=$_POST['cliente'];
+        if($cliente==""){
+            $actualizar="UPDATE noticias SET condicion = $condicion, noticia='$noticia' WHERE idnoticias = $idnoticia";
+            $resultado = mysqli_query($conexion, $actualizar);
+            if ($resultado){
+            header('Location: ../vistas/Administrador/Noticias.php?pagina=cliente');
+            }
+        }else{
+            $actualizar="UPDATE noticias SET condicion = $condicion, noticia='$noticia', idusuario=$cliente WHERE idnoticias = $idnoticia";
+            $resultado = mysqli_query($conexion, $actualizar);
+            if ($resultado){
+            header('Location: ../vistas/Administrador/Noticias.php?pagina=cliente');
+            }
+        }
+    break;
+    case 'editarNoticiaempresa':
+        $idnoticia=$_POST['idnoticia'];
+        $noticia=$_POST["noticia"];
+        $condicion=$_POST["condicion"];
+        $cliente=$_POST['cliente'];
+        if($cliente==""){
+            $actualizar="UPDATE noticias SET condicion = $condicion, noticia='$noticia' WHERE idnoticias = $idnoticia";
+            $resultado = mysqli_query($conexion, $actualizar);
+            if ($resultado){
+            header('Location: ../vistas/Administrador/Noticias.php?pagina=empresa');
+            }
+        }else{
+            $actualizar="UPDATE noticias SET condicion = $condicion, noticia='$noticia', idusuario=$cliente WHERE idnoticias = $idnoticia";
+            $resultado = mysqli_query($conexion, $actualizar);
+            if ($resultado){
+            header('Location: ../vistas/Administrador/Noticias.php?pagina=empresa');
+            }
+        }
+    break;
+    case 'eliminarnoticiacliente':
+        $idnoticia=$_POST['idnoticia'];
+        $eliminar="DELETE FROM noticias WHERE idnoticias=$idnoticia";
+        $resultado = mysqli_query($conexion, $eliminar);
+        if ($resultado){
+        header('Location: ../vistas/Administrador/Noticias.php?pagina=cliente');
+        }
+break; 
+case 'eliminarnoticiaempresa':
+        $idnoticia=$_POST['idnoticia'];
+        $eliminar="DELETE FROM noticias WHERE idnoticias=$idnoticia";
+        $resultado = mysqli_query($conexion, $eliminar);
+        if ($resultado){
+        header('Location: ../vistas/Administrador/Noticias.php?pagina=empresa');
+        }
+break; 
+    case 'buscarFactura':
+        $codigo=$_POST['codigo'];
+        $consulta="SELECT idevento FROM evento WHERE codigo='$codigo'";
+        $resultado=mysqli_query($conexion, $consulta);
+        $fila=mysqli_num_rows($resultado);
+        if($fila=$resultado->fetch_object()){
+            $_SESSION["idevento"]=$fila->idevento;
+            echo json_encode($fila);
+            header("Location: ../vistas/Administrador/Facturacion.php?pagina=mostrar");
+        }else{
+            header('Location: ../vistas/Administrador/Facturacion.php?pagina=sinresultados');
+        }
+    break;
+    case 'cancelarfacturacion':
+        unset($_SESSION['carrito'][$indice]);
+        header('Location: ../vistas/Administrador/Facturacion.php?pagina=buscar');
+    break;
+    case 'abono':
+        $pago=$_POST['pago'];
+        $idevento=$_POST['idevento'];
+        $idusuario=$_POST['idusuario'];
+        $resul=$conexion->query("SELECT t.nombre, t.categoria, e.abono, e.saldo FROM evento e, tipoevento t WHERE idevento=$idevento AND e.idtipoevento=t.idtipoevento");
+        $key=$resul->fetch_assoc();
+        $nombre=$key["nombre"];
+        $categoria=$key["categoria"];
+        $abono=$key["abono"];
+        $saldo=$key["saldo"];
+        $evento=$nombre.' '.$categoria;
+        $saldoactualizado=$saldo-$pago;
+        $abonoactualizado=$abono+$pago;
+        $mensaje='Has realizado el abono de tu evento tipo '.$evento.' por un valor de $'.number_format($pago, 0, ',', '.').'. Saldo $'.number_format($saldoactualizado, 0, ',', '.');
+        $actualizar="UPDATE evento SET abono = $abonoactualizado, saldo=$saldoactualizado WHERE idevento = $idevento";
+            $resultado = mysqli_query($conexion, $actualizar);
+            if ($resultado){
+                $noticia = mysqli_query($conexion, "INSERT INTO noticias(idusuario, noticia, condicion, destino) 
+                VALUES (2,'$mensaje', 1, 'cliente')");
+                if($noticia){
+                    header('Location: ../vistas/Administrador/Facturacion.php?pagina=mostrar');
+                }
+                $abono=0;
+                $abonoactualizado=0;
+                $saldo=0;
+                $saldoactualizado=0;
+            }
+    break;
     case 'salir':
         session_destroy();
         header("Location: ../vistas/Shared/Login.php");

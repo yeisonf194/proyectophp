@@ -87,6 +87,16 @@ require '../../Config/Conexion.php';
                                                         <div class="col-8"><hr><input type="text" value="<?php echo $mostrar['nombre'] ?>" name="nombre" style="border-radius:5px; color:#424141; width: 90%"></div>
                                                         <div class="col-4 text-center"><hr><h5 class="text-muted">Detalles</h5></div>
                                                         <div class="col-8"><hr>
+                                                        <select name="seleccion" id="seleccion">
+                                                        <?php
+                                                        $consulta=mysqli_query($conexion, "SELECT * FROM usuario");
+                                                        while($mostrar=mysqli_fetch_array($consulta)){
+                                                        ?>
+                                                        <option value="<?php echo $mostrar['idusuario']?>"><?php echo $mostrar['nombre']?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        </select>
                                                             <select name="categoria" style="border-radius:5px; color:#424141; width: 100%">
                                                                 <?php
                                                                     if($mostrar['categoria']=='Basico'){

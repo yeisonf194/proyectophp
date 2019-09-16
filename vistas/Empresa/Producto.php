@@ -54,7 +54,7 @@ require '../../Config/Conexion.php';
                         <td style="padding: 10px; text-align: center"><img src="../../productos/<?php echo $mostrar['imagen'] ?>" alt="" width="90%"></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
-                            <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
+                            <td style="padding: 10px; text-align: center">$<?php echo number_format($mostrar['precio'], 0, ',', '.') ?></td>
                             <td style="padding: 10px; text-align: center">
                                 <button type="button" class="btn" data-toggle="modal" data-target="#info<?php echo $mostrar['idempresa'].$producto?>"><i class="fas fa-info"></i></button>
                                 <button type="button" class="btn" data-toggle="modal" data-target="#edit<?php echo $mostrar['idempresa'].$producto?>"><i class="fas fa-pen"></i></button>
@@ -103,7 +103,7 @@ require '../../Config/Conexion.php';
                                     <div class="col-4 text-center"><hr><h5 class="text-muted">Detalles</h5></div>
                                     <div class="col-8"><hr><p style="font-size:18px"><?php echo $mostrar['especificaciones'] ?></p></div>
                                     <div class="col-4 text-center"><hr><h5 class="text-muted">Precio</h5></div>
-                                    <div class="col-8"><hr><p style="font-size:18px">$<?php echo $mostrar['precio'] ?></p></div>
+                                    <div class="col-8"><hr><p style="font-size:18px">$<?php echo number_format($mostrar['precio'], 0, ',', '.') ?></p></div>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@ require '../../Config/Conexion.php';
                             <td style="padding: 10px; text-align: center"><img src="../../productos/<?php echo $mostrar['imagen'] ?>" width="90%" alt=""></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
                             <td style="padding: 10px; text-align: center"><?php echo $mostrar['especificaciones'] ?></td>
-                            <td style="padding: 10px; text-align: center"><?php echo $mostrar['precio'] ?></td>
+                            <td style="padding: 10px; text-align: center"><?php echo number_format($mostrar['precio'], 0, ',', '.') ?></td>
                             <td style="padding: 10px; text-align: center">
                                 <button type="button" class="btn" data-toggle="modal" data-target="#info<?php echo $mostrar['idempresa'].$producto?>"><i class="fas fa-info"></i></button>
                                 <button type="button" class="btn" data-toggle="modal" data-target="#edit<?php echo $mostrar['idempresa'].$producto?>"><i class="fas fa-pen"></i></button>
@@ -214,7 +214,7 @@ require '../../Config/Conexion.php';
                                     <div class="col-4 text-center"><hr><h5 class="text-muted">Detalles</h5></div>
                                     <div class="col-8"><hr><p style="font-size:18px"><?php echo $mostrar['especificaciones'] ?></p></div>
                                     <div class="col-4 text-center"><hr><h5 class="text-muted">Precio</h5></div>
-                                    <div class="col-8"><hr><p style="font-size:18px">$<?php echo $mostrar['precio'] ?></p></div>
+                                    <div class="col-8"><hr><p style="font-size:18px">$<?php echo number_format($mostrar['precio'], 0, ',', '.') ?></p></div>
                                 </div>  
                             </div>
                         </div>

@@ -13,11 +13,11 @@ require '../../../Config/Conexion.php';
                         <table style="background-color: rgba(255,255,255,0.1); border-radius:20px">
                             <thead>
                                 <tr>
-                                    <th style="padding: 20px; width: 200px; text-align: center">Nombre</th>
-                                    <th style="padding: 20px; width: 200px; text-align: center">Nit</th>
-                                    <th style="padding: 20px; width: 200px; text-align: center">Telefono</th>
-                                    <th style="padding: 20px; width: 300px; text-align: center">Correo</th>
-                                    <th style="padding: 20px; width: 300px; text-align: center">Editar</th>
+                                    <th class="lg-display-none" style="padding: 20px; width: 200px; text-align: center">Nombre</th>
+                                    <th class="lg-display-none" style="padding: 20px; width: 200px; text-align: center">Nit</th>
+                                    <th class="lg-display-none" style="padding: 20px; width: 200px; text-align: center">Telefono</th>
+                                    <th class="lg-display-none" style="padding: 20px; width: 300px; text-align: center">Correo</th>
+                                    <th class="lg-display-none" style="padding: 20px; width: 300px; text-align: center">Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,11 +27,11 @@ require '../../../Config/Conexion.php';
                             while($mostrar=mysqli_fetch_array($resultado)){
                             ?>
                                     <tr>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['nit'] ?></td>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['telefono'] ?></td>
-                                        <td style="padding: 10px; text-align: center"><?php echo $mostrar['correo'] ?></td>
-                                        <td style="padding: 10px; text-align: center">
+                                        <td class="table-responsive-md" style="padding: 10px; text-align: center"><?php echo $mostrar['nombre'] ?></td>
+                                        <td class="table-responsive-md" style="padding: 10px; text-align: center"><?php echo $mostrar['nit'] ?></td>
+                                        <td class="table-responsive-md" style="padding: 10px; text-align: center"><?php echo $mostrar['telefono'] ?></td>
+                                        <td class="table-responsive-md" style="padding: 10px; text-align: center"><?php echo $mostrar['correo'] ?></td>
+                                        <td class="table-responsive-md" style="padding: 10px; text-align: center">
                                             <a href="editaEmpresa.htm?idempresa=${dato.idempresa}" class="text-primary mr-3">Editar</a>
                                             <a data-toggle="modal" href="#portfolioModal1?id=<?php echo $mostrar['idempresa']; ?>" class="text-primary mr-3">Detalles</a>
                                         </td>
