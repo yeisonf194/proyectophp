@@ -6,7 +6,7 @@ require '../Shared/Header.php';
         <div class="col-12"><br><br><br><h1 class="text-white text-center mt-5 mb-4">Formulario de Registro</h1><br></div>
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8 col-lg-6">
-                <form method="POST" id="formRegister" onsubmit="metFormulario.valFormCompleto()" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%">
+                <form method="POST" action="../../Modelos/Registrar.php?op=registrar" style="background-color: rgba(255,255,255,0.1); border-radius:20px; padding: 40px; width:100%">
                     <div class="row d-flex">
                         <div class="col-sm-12 col-lg-6">
                             <p>
@@ -50,7 +50,7 @@ require '../Shared/Header.php';
                             </p><span class="text-danger" id="infoclaveconfirma"></span><br><br>
                         </div>
                         <div class="col-12 text-center">
-                            <p><button onclick="uncheck()" class="btn btn-primary">Enviar</button><p id="prueba"></p></p>
+                            <p><button class="btn btn-primary">Enviar</button><p id="prueba"></p></p>
                         </div>
                     </div>
                 </form><br><br>

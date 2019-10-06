@@ -58,17 +58,17 @@ include '../../Modelos/Shoppingcart.php';
             <tr>  
               <td style="padding: 10px; text-align: center"><img src="../../productos/<?php echo $producto['imagen'] ?>" alt="" width="60%"></td>
               <td style="padding: 10px; text-align: center"><?php echo $producto['nombre'] ?></td>
-              <td style="padding: 10px; text-align: center"><?php echo $producto['precio'] ?></td>
-              <td style="padding: 10px; text-align: center"><?php 
+              <td style="padding: 10px; text-align: center">$<?php echo number_format($producto['precio'], 0, ',', '.')?></td>
+              <td style="padding: 10px; text-align: center">$<?php 
               if($producto['idempresa']==2 || $producto['idempresa']==3){
                 if($producto['idempresa']==2){
-                echo $totalservicio=$producto['precio']*$asistentes;
+                echo number_format($totalservicio=$producto['precio']*$asistentes, 0, ',', '.');
                 }else{
                   $botellas=round(($asistentes/6),0,PHP_ROUND_HALF_UP);
-                  echo $totalservicio=$producto['precio']*$botellas;
+                  echo number_format($totalservicio=$producto['precio']*$botellas, 0, ',', '.');
                 }
               }else{
-                echo $totalservicio=$producto['precio'];
+                echo number_format($totalservicio=$producto['precio'], 0, ',', '.');
               }
               ?>
               </td>
@@ -86,7 +86,7 @@ include '../../Modelos/Shoppingcart.php';
             ?> 
             <tr>  
               <td colspan="3" align="ridht" style="padding: 10px; text-align: center"><h3>Total</h3></td>
-              <td align="right" style="padding: 10px; text-align: center"><?php echo $total?></td>
+              <td align="right" style="padding: 10px; text-align: center">$<?php echo number_format($total, 0, ',', '.')?></td>
               <td style="padding: 10px; text-align: center"></td>
             </tr>  
             </tbody>
@@ -161,16 +161,14 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario.$val;
 				</div> <!-- panel heading -->
 				<div class="panel-body mt-3">
 				  <h3 class="panel-title">Detalle <small> <?php echo $evento.' '.$categoria?></small></h3>
-				  
-				  <table class="table table-condensed">
+            <table class="table table-condensed ml-2">
 					<thead>
 					  <tr>
-						<th class="">Producto</th>
-						<th class="">Nombre</th>
-						<th class="">Empresa</th>
-						<th class="">Cantidad</th>
-						<th class="">Precio</th>
-						<th class="">Total</th>
+						<th>Producto</th>
+						<th>Nombre</th>
+						<th>Cantidad</th>
+						<th>Precio</th>
+						<th>Total</th>
 					  </tr>
 					</thead>
 					<tbody>
@@ -183,10 +181,9 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario.$val;
             $empresa=$key["nombre"];
           ?>
 
-					  <tr>
+					  <tr><hr>
 						<td class=""><?php echo $contador?></td>
 						<td class=""><?php echo $producto['nombre']?></td>
-						<td class=""><?php echo $empresa?></td>
             <td class=""><?php 
               if($producto['idempresa']==2 || $producto['idempresa']==3){
                 if($producto['idempresa']==2){
@@ -199,17 +196,17 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario.$val;
                 echo '1';
               }
               ?></td>
-						<td class=""><?php echo $producto['precio']?></td>
-						<td class=""><?php 
+						<td class="">$<?php echo number_format($producto['precio'], 0, ',', '.');?></td>
+						<td class="">$<?php 
               if($producto['idempresa']==2 || $producto['idempresa']==3){
                 if($producto['idempresa']==2){
-                echo $totalservicio=$producto['precio']*$asistentes;
+                echo  number_format($totalservicio=$producto['precio']*$asistentes, 0, ',', '.');
                 }else{
                   $botellas=round(($asistentes/6),0,PHP_ROUND_HALF_UP);
-                  echo $totalservicio=$producto['precio']*$botellas;
+                  echo  number_format($totalservicio=$producto['precio']*$botellas, 0, ',', '.');
                 }
               }else{
-                echo $totalservicio=$producto['precio'];
+                echo  number_format($totalservicio=$producto['precio'], 0, ',', '.');
               }
               ?></td>
 					  </tr>
@@ -219,17 +216,18 @@ $codigofactura=$fechareserva.$tipoevento.$idusuario.$val;
             ?>
 					  </tr>
             <tr>  
-              <td colspan="5" align="ridht" style="padding: 10px; text-align: center"><h5>Total</h5></td>
-              <td align="right" style="padding: 10px; text-align: center"><h5><?php echo $total?></h5></td>
+              <td colspan="4" align="ridht" style="padding: 10px; text-align: center"><h5>Total</h5></td>
+              <td align="right" style="padding: 10px; text-align: center"><h5>$<?php echo number_format($total, 0, ',', '.');?></h5></td>
             </tr>
 					</tbody>
 				  </table>
+
 				</div> <!-- panel body --> 
         </div>
         <form action="../../Modelos/Usuario.php?op=contratando" method="POST">
         <div class="row">
           <div class="col-12 my-3 p-5 text-center"><input type="checkbox" required> Yo <?php echo $nombreusuario?> con cedula No. <?php echo $cedula ?> indico aceptar los terminos y condiciones de EventosGuatoc por motivo de contratacion de <?php echo $contador-1?>
-          servicios para el Evento tipo <?php echo $evento.' '.$categoria?> por un total de $<?php echo $total?>. Evento programado para el dia <?php echo $entrega?> con un total de 
+          servicios para el Evento tipo <?php echo $evento.' '.$categoria?> por un total de $<?php echo number_format($total, 0, ',', '.');?>. Evento programado para el dia <?php echo $entrega?> con un total de 
           <?php echo $asistentes?> invitados. <br><br><p><strong>Atencion: </strong>Para hacer efectiva la contratacion para su evento debera acercarse dentro de los proximos cinco (5) dias habiles a la Carrera 6 No. 26 A para realizar el pago correspondiente al evento. Recuerde llevar impresa esta factura</p> <hr></div>
         </div>
       </div>

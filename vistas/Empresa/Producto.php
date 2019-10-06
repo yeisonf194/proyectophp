@@ -97,7 +97,7 @@ require '../../Config/Conexion.php';
                                 </div>
                                 <!--Body-->
                                 <div class="row modal-body">
-                                    <div class="col-12 text-center mb-5"><h3><?php echo $mostrar['nombre'] ?></h3><img src="../../img/friends.jpg" width="70%" alt=""></div>
+                                    <div class="col-12 text-center mb-5"><h3><?php echo $mostrar['nombre'] ?></h3><img src="../../productos/<?php echo $mostrar['imagen'] ?>" width="70%" alt=""></div>
                                     <div class="col-4 text-center"><hr><h5 class="text-muted">Nombre</h5></div>
                                     <div class="col-8"><hr><p style="font-size:18px"><?php echo $mostrar['nombre'] ?></p></div>
                                     <div class="col-4 text-center"><hr><h5 class="text-muted">Detalles</h5></div>

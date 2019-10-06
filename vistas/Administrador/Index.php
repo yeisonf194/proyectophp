@@ -39,7 +39,20 @@ $restado=$consul["fecha"];
                           <?php
                         }else{
                         ?> 
-                          <div class="mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $conteo ?> dias para proxima entrega</div>
+                          <div class="mb-0 mr-3 font-weight-bold text-gray-800"><?php echo 
+                            ini_set('date.time','America/Bogota');
+                            $fechaactual = date('Y-m-d', time());
+                            $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, usuario u WHERE u.idusuario=e.idusuario AND fechaentregahora>='$fechaactual' ORDER BY fechaentregahora asc");
+                            $key=$resul->fetch_assoc();
+                            $proximo=$key["fechaactual"];
+                            $iniciando=$conexion->query("SELECT COUNT(e.idevento) as conteo FROM evento e, usuario u WHERE u.idusuario=e.idusuario");
+                            $contador=$iniciando->fetch_assoc();
+                            $conteo=$contador["conteo"];
+                            $resta=$conexion->query("SELECT TIMESTAMPDIFF(day, '$fechaactual', '$proximo') as fecha");
+                            $consul=$resta->fetch_assoc();
+                            $restado=$consul["fecha"];
+                            echo $restado;
+                          ?> dias para proxima entrega</div>
                         </div>
                       </div>
                     </div>
@@ -116,11 +129,11 @@ $restado=$consul["fecha"];
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pedidos</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Tiene <?php echo $conteo?> pedidos</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -133,7 +146,7 @@ $restado=$consul["fecha"];
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tareas</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
@@ -146,7 +159,7 @@ $restado=$consul["fecha"];
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -159,7 +172,7 @@ $restado=$consul["fecha"];
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Tareas Pendientes</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                     </div>
                     <div class="col-auto">
@@ -189,7 +202,7 @@ $restado=$consul["fecha"];
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Panel</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>

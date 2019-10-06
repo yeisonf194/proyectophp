@@ -24,9 +24,9 @@ include '../../Modelos/Shoppingcart.php'
         $resultado=mysqli_query($conexion,$consulta);
         while($mostrar=mysqli_fetch_array($resultado)){
       ?>
-      <div class="col-4 text-center">
+      <div class="col-4 text-center mb-5">
         <button type="submit" name="categoria" value="<?php echo $mostrar['categoria'] ?>" class="btn btn-lg btn-danger"><?php echo $mostrar['categoria']?></button>
-      </div>
+      </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       <?php
         }
       ?>
@@ -310,10 +310,10 @@ include '../../Modelos/Shoppingcart.php'
             </div>
           </article>
       <?php
-        }if($salon==true){
+        }if($animacion==true){
           ?>
             <article class="row justify-content-center my-5">
-                <div class="col-12 mb-5"><h1 class="text-center">Salon</h1></div>
+                <div class="col-12 mb-5"><h1 class="text-center">Animacion</h1></div>
                   <?php
                     $resultado = mysqli_query($conexion, 'SELECT s.idanimacion, s.idempresa, s.nombre, s.especificaciones, s.precio, e.tipo, e.nombre as empresa, s.imagen as imagen FROM animacion s, empresa e WHERE s.idempresa=e.idempresa');
                     while($mostrar=mysqli_fetch_array($resultado)){
@@ -324,13 +324,13 @@ include '../../Modelos/Shoppingcart.php'
                     <div class="card-body" height="500px">
                       <h4 class="card-title"><?php echo $mostrar['nombre'] ?></h4>
                       <p>Precio: $<?php echo number_format($mostrar['precio'], 0, ',', '.')?></p>
-                      <a data-toggle="modal" href="#salon<?php echo $mostrar['idsalon']?>" class="btn btn-primary">Ver</a>
+                      <a data-toggle="modal" href="#anima<?php echo $mostrar['idanimacion']?>" class="btn btn-primary">Ver</a>
                     </div>
                   </div>
               </div>
         
                   <!-- Modal -->
-                    <div class="portfolio-modal modal fade" id="salon<?php echo $mostrar['idsalon']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="portfolio-modal modal fade" id="anima<?php echo $mostrar['idanimacion']?>" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="close-modal" data-dismiss="modal">
@@ -353,7 +353,7 @@ include '../../Modelos/Shoppingcart.php'
                                   </ul>
                                   <form action="" method="POST">
                                     <input type="hidden" name="imagen" id="imagen" value="<?php echo openssl_encrypt($mostrar['imagen'],COD,KEY) ?>">
-                                    <input type="hidden" name="idservicio" id="idservicio" value="<?php echo openssl_encrypt($mostrar['idsalon'],COD,KEY) ?>">
+                                    <input type="hidden" name="idservicio" id="idservicio" value="<?php echo openssl_encrypt($mostrar['idanimacion'],COD,KEY) ?>">
                                     <input type="hidden" name="idempresa" id="idempresa" value="<?php echo openssl_encrypt($mostrar['idempresa'],COD,KEY) ?>">
                                     <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($mostrar['nombre'],COD,KEY) ?>">
                                     <input type="hidden" name="especificaciones" id="especificaciones" value="<?php echo openssl_encrypt($mostrar['especificaciones'],COD,KEY)?>">
@@ -381,6 +381,10 @@ include '../../Modelos/Shoppingcart.php'
     break;
       }
     ?>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     <div class="row">
 <footer class="col-12" style="background-color:#212529">

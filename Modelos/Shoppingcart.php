@@ -45,6 +45,7 @@ if(isset($_POST['btnAccion'])){
         $producto=array(
           'idservicio'=>$idservicio,
           'imagen'=>$imagen,
+          'especificaciones'=>$especificaciones,
           'idempresa'=>$idempresa,
           'nombre'=>$nombre,
           'precio'=>$precio
@@ -55,6 +56,7 @@ if(isset($_POST['btnAccion'])){
         $producto=array(
           'idservicio'=>$idservicio,
           'imagen'=>$imagen,
+          'especificaciones'=>$especificaciones,
           'idempresa'=>$idempresa,
           'nombre'=>$nombre,
           'precio'=>$precio

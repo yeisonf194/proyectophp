@@ -164,22 +164,22 @@ require '../../Config/Conexion.php';
                         $idempresa=$_SESSION["idempresa"];
                         switch($idempresa){
                             case '4':
-                              $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, pedido p,$empresa s, empresa em WHERE p.idevento=e.idevento AND p.$servicio=s.$servicio AND s.idempresa=em.idempresa AND em.idempresa=$idempresa ORDER BY fechaentregahora asc");
+                              $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, pedido p,$empresa s, empresa em WHERE p.idevento=e.idevento AND e.fechaentregahora>='$fechaactual' AND p.$servicio=s.$servicio AND s.idempresa=em.idempresa AND em.idempresa=$idempresa ORDER BY fechaentregahora asc");
                               $key=$resul->fetch_assoc();
                               $proximo=$key["fechaactual"];
                             break;
                             case '5':
-                              $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, pedido p,$empresa s, empresa em WHERE p.idevento=e.idevento AND p.$servicio=s.$servicio AND s.idempresa=em.idempresa AND em.idempresa=$idempresa ORDER BY fechaentregahora asc");
+                              $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, pedido p,$empresa s, empresa em WHERE p.idevento=e.idevento AND e.fechaentregahora>='$fechaactual' AND p.$servicio=s.$servicio AND s.idempresa=em.idempresa AND em.idempresa=$idempresa ORDER BY fechaentregahora asc");
                               $key=$resul->fetch_assoc();
                               $proximo=$key["fechaactual"];
                             break;
                             case '6':
-                              $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, pedido p,$empresa s, empresa em WHERE p.idevento=e.idevento AND p.$servicio=s.$servicio AND s.idempresa=em.idempresa AND em.idempresa=$idempresa ORDER BY fechaentregahora asc");
+                              $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, pedido p,$empresa s, empresa em WHERE p.idevento=e.idevento AND e.fechaentregahora>='$fechaactual' AND p.$servicio=s.$servicio AND s.idempresa=em.idempresa AND em.idempresa=$idempresa ORDER BY fechaentregahora asc");
                               $key=$resul->fetch_assoc();
                               $proximo=$key["fechaactual"];
                             break;
                             default:
-                              $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, pedido p, servicio s, empresa em WHERE p.idevento=e.idevento AND p.idpedido=s.idpedido AND s.idempresa=em.idempresa AND em.idempresa=$idempresa  ORDER BY fechaentregahora asc");
+                              $resul=$conexion->query("SELECT MIN(e.fechaentregahora) as fechaactual FROM evento e, pedido p, servicio s, empresa em WHERE p.idevento=e.idevento AND e.fechaentregahora>='$fechaactual' AND p.idpedido=s.idpedido AND s.idempresa=em.idempresa AND em.idempresa=$idempresa  ORDER BY fechaentregahora asc");
                               $key=$resul->fetch_assoc();
                               $proximo=$key["fechaactual"];
                             break;
@@ -187,13 +187,13 @@ require '../../Config/Conexion.php';
                         $resta=$conexion->query("SELECT TIMESTAMPDIFF(day, '$fechaactual', '$proximo') as fecha");
                             $consul=$resta->fetch_assoc();
                             $restado=$consul["fecha"];
-                        if($conteo<0){
+                        if($conteo>0){
                         ?> 
                           <div class="mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $restado ?> dias para proxima entrega</div>
                         <?php
                         }else{
                           ?>
-                          <div class="mb-0 mr-3 font-weight-bold text-gray-800">No tiene pedidos</div>
+                          <div class="mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $conteo?></div>
                           <?php
                         }
                         ?>

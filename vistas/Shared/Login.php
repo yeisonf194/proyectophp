@@ -13,7 +13,7 @@ require 'Header.php';
             </p><br>
             <p>
                 <label for="name" class="text-white">Contraseña</label>
-                <input type="text" name="clave" style="border-radius:5px; color:#424141; width: 100%" required>
+                <input type="password" name="clave" style="border-radius:5px; color:#424141; width: 100%" required>
             </p><br>
             <p><button type="submit" class="btn btn-primary">Enviar</button></p>
         </form>

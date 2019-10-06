@@ -234,7 +234,7 @@ $animacion=$consultar["idanimacion"];
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="row my-3 mx-4 p-3">
-                    <div class="col-12"><h1 class="text-center">Proximo</h1></div><hr>
+                    <div class="col-12"><h1 class="text-center">Eventos</h1></div><hr>
                     <?php
                      $resultado=mysqli_query($conexion,"SELECT 	t.nombre as evento, t.categoria, e.idevento, e.idusuario, e.cantidadpersonas, e.fechaentregahora, e.fechareserva, e.precio, e.abono, e.saldo 
                                                         FROM 		usuario u, tipoevento t, evento e 
